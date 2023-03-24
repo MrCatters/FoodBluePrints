@@ -15,12 +15,12 @@ The functional requirements of our web application would include but are not lim
 ### **Non-functional**
 Non-functional requirements include performance, reliability, and security. We want the application to be performant and fast enough so that the users don’t have to wait. Increasing Reliability also comes to the forefront as we always want our users to have access to their recipes whenever they get hungry. As we also want to ensure that our application is secure, we plan on testing out our application for security vulnerabilities and implementing Spring security into our application.
 ![alt](./readmeimg/functionalblockdiagram.png)
-### **Software architecture**
+## **Software architecture**
 For our software, we are creating our application database with SQL and connecting it to a Spring backend. We will manage client side views using ReactJS, and Node to manage dependencies.
 ![Software Architecture](./readmeimg/softwarearchitecture.png)
 
 
-### **Technology stack**
+## **Technology stack**
 SQL  
 Spring Boot  
 Spring Security  
@@ -29,7 +29,7 @@ React
 
 We will use SQL for all of our database needs. We will be using the Spring framework for the backend of our application. We will use Spring Boot for configuration and Spring Security for dealing with login and remediating vulnerabilities. Node and React will be used for our front-end. 
 
-### **Meet the Team**
+## **Meet the Team**
 **Joey Parker** - Chief Recipe Sourcer (CRS)  
 **Jonathan Dew**   
 **Daniel Seamon**  
