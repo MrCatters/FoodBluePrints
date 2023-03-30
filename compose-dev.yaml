@@ -1,7 +1,7 @@
 version: '1.0'
 services:
   backend:
-    build: spring_backend
+    build:
       dockerfile: Dockerfile
     ports:
       - 8080:8080
