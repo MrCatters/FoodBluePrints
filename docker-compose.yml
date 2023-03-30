@@ -1,0 +1,22 @@
+version: '1.0'
+
+services:
+  backend:
+    build: spring_backend
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_DB=example
+    networks:
+      - spring-postgres
+  db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD='password'
+    ports:
+      - 3306:3306
+    networks:
+      - spring-postgres
+networks:
+  spring-postgres:
