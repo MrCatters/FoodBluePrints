@@ -1,7 +1,7 @@
 FROM eclipse-temurin:20-jdk-alpine
 
-ADD target/spring-0.0.1-SNAPSHOT.jar spring-0.0.1-SNAPSHOT.jar
+ADD ./spring_backend/target/recipe-site-0.0.1-SNAPSHOT.jar recipe-site-0.0.1-SNAPSHOT.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "spring-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "recipe-site-0.0.1-SNAPSHOT.jar"]
