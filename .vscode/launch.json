@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RecipeSiteApplication<recipe-site>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.recipe.recipesite.RecipeSiteApplication",
+            "projectName": "recipe-site",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

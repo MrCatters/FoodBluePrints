@@ -25,7 +25,9 @@
 	// Configure tool-specific properties.
 	"customizations": {
     	"vscode": {
-	    	"settings": {},
+	    	"settings": {
+				"telemetry.telemetryLevel": "off"
+			},
     		"extensions": [
 				"ms-vscode-remote.vscode-remote-extensionpack",
 				"vscjava.vscode-java-pack",
@@ -34,7 +36,8 @@
 				"ms-vscode-remote.remote-wsl",
 				"ms-azuretools.vscode-docker",
 				"redhat.fabric8-analytics",
-				"mtxr.sqltools"
+				"mtxr.sqltools",
+				"mtxr.sqltools-driver-mysql"
 			]
       	}
 	}
