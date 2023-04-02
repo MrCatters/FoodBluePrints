@@ -1,0 +1,3 @@
+[wsl2]
+memory=1GB # Limits VM memory in WSL 2. If you want less than 1GB, use something like 500MB, not 0.5GB
+processors=2 # Makes the WSL 2 VM use two virtual processors
