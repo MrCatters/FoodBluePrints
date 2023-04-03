@@ -26,7 +26,8 @@
 	"customizations": {
     	"vscode": {
 	    	"settings": {
-				"telemetry.telemetryLevel": "off"
+				"telemetry.telemetryLevel": "off",
+				"extensions.ignoreRecommendations": true
 			},
     		"extensions": [
 				"ms-vscode-remote.vscode-remote-extensionpack",
