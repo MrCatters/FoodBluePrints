@@ -12,7 +12,7 @@ public class RecipeSiteApplication {
     }
 
     @GetMapping("/")
-    public String index(){AS
+    public String index(){
         return "index.html";
     }
 

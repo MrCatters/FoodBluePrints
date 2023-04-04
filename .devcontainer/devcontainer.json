@@ -5,6 +5,7 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"forwardPorts": [5432],
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"nodeGypDependencies": true,
@@ -36,9 +37,9 @@
 				"xabikos.JavaScriptSnippets",
 				"ms-vscode-remote.remote-wsl",
 				"ms-azuretools.vscode-docker",
-				"redhat.fabric8-analytics",
 				"mtxr.sqltools",
-				"mtxr.sqltools-driver-mysql"
+				"mtxr.sqltools-driver-pg",
+				"GitHub.vscode-pull-request-github"
 			]
       	}
 	}

@@ -1,4 +1,16 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "recipe_db",
+            "username": "postgres",
+            "password": "postgres",
+            "database": "recipe_db"
+        }
+    ]
 }
