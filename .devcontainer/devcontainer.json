@@ -28,9 +28,7 @@
     	"vscode": {
 	    	"settings": {
 				"telemetry.telemetryLevel": "off",
-<<<<<<< HEAD
-				"extensions.ignoreRecommendations": true
-=======
+				"extensions.ignoreRecommendations": true,
 				"sqltools.connections": [
 					{
 						"name": "Recipe Database",
@@ -43,7 +41,6 @@
 						"password": "postgres"
 					}
 				]
->>>>>>> dev-dev-container
 			},
     		"extensions": [
 				"ms-vscode-remote.vscode-remote-extensionpack",
@@ -53,12 +50,7 @@
 				"ms-vscode-remote.remote-wsl",
 				"ms-azuretools.vscode-docker",
 				"mtxr.sqltools",
-<<<<<<< HEAD
-				"mtxr.sqltools-driver-pg",
-				"GitHub.vscode-pull-request-github"
-=======
 				"mtxr.sqltools-driver-pg"
->>>>>>> dev-dev-container
 			]
       	}
 	}
