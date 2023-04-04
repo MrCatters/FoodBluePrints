@@ -26,7 +26,19 @@
 	"customizations": {
     	"vscode": {
 	    	"settings": {
-				"telemetry.telemetryLevel": "off"
+				"telemetry.telemetryLevel": "off",
+				"sqltools.connections": [
+					{
+						"name": "Recipe Database",
+						"driver": "PostgreSQL",
+						"previewLimit": 50,
+						"server": "localhost",
+						"port": 5432,
+						"database": "recipe_db",
+						"username": "postgres",
+						"password": "postgres"
+					}
+				]
 			},
     		"extensions": [
 				"ms-vscode-remote.vscode-remote-extensionpack",
@@ -37,7 +49,7 @@
 				"ms-azuretools.vscode-docker",
 				"redhat.fabric8-analytics",
 				"mtxr.sqltools",
-				"mtxr.sqltools-driver-mysql"
+				"mtxr.sqltools-driver-pg"
 			]
       	}
 	}
