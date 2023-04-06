@@ -6,6 +6,8 @@ import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.recipe.recipesite.service.JwtService;
+
 import io.micrometer.common.lang.NonNull;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor // Gen constructor relating to final.
 public class JwtAuthenticationFilters extends OncePerRequestFilter {
+
+    private final JwtService jwtService;
 
     // Intercept requests and respond with new data
     @Override
@@ -33,7 +37,7 @@ public class JwtAuthenticationFilters extends OncePerRequestFilter {
             return;
         }
         jwtToken = authHeader.substring(7);
-        userEmail = // todo extract the user's email.
+        // userEmail = jwtService.extract
     }
 
 }
