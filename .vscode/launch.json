@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.recipe.recipesite.Main",
+            "projectName": "recipe-site"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-RecipeSiteApplication<recipe-site>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
