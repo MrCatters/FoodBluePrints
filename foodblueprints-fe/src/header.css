@@ -1,4 +1,16 @@
+:root {
+    --blue-color: #279af1;
+    --white-color:#e6e6e6;
+    --black-color: #1D201F;
+}
+
 .Header {
-    background-color: aqua;
-    outline: 2px solid black;
+    background-color: var(--black-color);
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+}
+
+.Header * {
+    color: var(--white-color);
 }

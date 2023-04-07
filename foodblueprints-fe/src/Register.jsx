@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "./register.css"
-import { Link } from "react-router-dom" 
+import { Link, useNavigate } from "react-router-dom" 
 import axios from "axios";
 
 
 function Register() {
-
+    const [f_name,setF_name] = useState();
+    const [l_name,setL_name] = useState();
     const [u_pass,setPass] = useState();
     const [u_email, setEmail] = useState();
     const [u_pass2, setPass2] = useState();
     const [matchstate,setMatchstate] = useState();
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +23,30 @@ function Register() {
             
         } else {
             setMatchstate();
-            axios.post()
+            axios.post("http://127.0.0.1:8080/api/v1/auth/register",{
+                "firstname":f_name,
+                "lastname":l_name,
+                "email":u_email,
+                "password":u_pass
+                
+             })
+            .then(function response(response) {
+            
+                if (null ){ 
+                    //success case
+                    navigate("/home");    
+                } else if (null){ 
+                    //already registered
+                    setMatchstate("This email is already associated with an account")
+                } else {
+                    //something else
+                    
+                }
+                
+            })
+            .catch(function error(error) {
+                console.log(error);
+            });
         }
     }
     return (
@@ -29,8 +55,8 @@ function Register() {
             <h2>Please register for an account</h2>
             <div className="register-form-container">
                 <form onSubmit = {handleSubmit} className="login-form">
-                    <input type = "text" required = "true" onChange = {(e) => setEmail(e.target.value)}id = "f_name"  placeholder="first name.."/>
-                    <input type = "text" required = "true" onChange = {(e) => setEmail(e.target.value)}id = "l_name"  placeholder="last name.."/>   
+                    <input type = "text" required = "true" onChange = {(e) => setF_name(e.target.value)}id = "f_name"  placeholder="first name.."/>
+                    <input type = "text" required = "true" onChange = {(e) => setL_name(e.target.value)}id = "l_name"  placeholder="last name.."/>   
                     <input type = "text" required = "true" onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter email.."/>
                     <input type = "text" required = "true"id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
                     <input type = "text" required = "true"id = "password1" onChange = {(e) => setPass2(e.target.value)} placeholder="enter password again..."/>

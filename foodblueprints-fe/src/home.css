@@ -1,0 +1,9 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Home h1 {
+    margin: 3rem;
+}
