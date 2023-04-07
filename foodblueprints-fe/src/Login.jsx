@@ -42,13 +42,13 @@ function Login(props){
     return (
         <div className="Login">
             <h1>FoodBlueprints</h1>
-            <h2>Welcome, please log in or sign up.</h2>
+            <h2>Welcome, please log in or sign up</h2>
             <div className="login-form-container">
                 <form onSubmit = {handleSubmit} className="login-form">
-                    <input type = "text" onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter username.."/>
-                    <input type = "text" id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
+                    <input type = "text" required onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter username.."/>
+                    <input type = "text" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
 
-                    <input type = "submit" value = "Submit"/>
+                    <input type = "submit" value = "Sign in"/>
                 </form>
                 <p>{passvalid}</p>
                 <Link to = "/register">Don't have an account? Sign up</Link>
