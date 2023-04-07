@@ -52,8 +52,9 @@ public class AuthenticationService {
         .withMatcher("model", new GenericPropertyMatcher().ignoreCase());
       Example<User> example = Example.of(userProbe, userMatcher);
 
-      if (repository.exists(example))
+      if (repository.exists(example)){
         return null;
+      }
 
         var user = User.builder()
             .firstname(request.getFirstname())

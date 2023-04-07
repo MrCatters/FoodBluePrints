@@ -25,27 +25,29 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-  private final AuthenticationService service;
+    private final AuthenticationService service;
 
-  @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(
-  @RequestBody RegisterRequest request) throws Exception{
-      return ResponseEntity.ok(service.register(request));
-  }
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> register(
+    @RequestBody RegisterRequest request) throws Exception{
+        if (service.register(request) == null) {
+            return ResponseEntity.badRequest().body(service.register(request));
+        }
 
-  @PostMapping("/authenticate")
-  public ResponseEntity<AuthenticationResponse> authenticate(
-  @RequestBody AuthenticationRequest request) {
-      return ResponseEntity.ok(service.authenticate(request));
-  }
+        return ResponseEntity.ok(service.register(request));
+    }
 
-  @PostMapping("/refresh-token")
-  public void refreshToken(
-  HttpServletRequest request,
-  HttpServletResponse response) 
-  throws IOException, StreamWriteException, DatabindException, java.io.IOException {
-      service.refreshToken(request, response);
-  }
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> authenticate(
+    @RequestBody AuthenticationRequest request) {
+        return ResponseEntity.ok(service.authenticate(request));
+    }
 
-
+    @PostMapping("/refresh-token")
+    public void refreshToken(
+    HttpServletRequest request,
+    HttpServletResponse response) 
+    throws IOException, StreamWriteException, DatabindException, java.io.IOException {
+        service.refreshToken(request, response);
+    }
 }
