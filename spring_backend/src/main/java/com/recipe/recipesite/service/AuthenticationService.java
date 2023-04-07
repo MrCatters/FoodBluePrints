@@ -1,4 +1,4 @@
-package com.recipe.recipesite.controller.auth;
+package com.recipe.recipesite.service;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,16 +9,19 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.recipe.recipesite.model.users.Role;
 import com.recipe.recipesite.model.users.User;
+import com.recipe.recipesite.model.auth.AuthenticationRequest;
+import com.recipe.recipesite.model.auth.AuthenticationResponse;
+import com.recipe.recipesite.model.auth.RegisterRequest;
 import com.recipe.recipesite.model.token.Token;
 import com.recipe.recipesite.model.token.TokenRepository;
 import com.recipe.recipesite.model.token.TokenType;
 import com.recipe.recipesite.model.users.UserRepository;
-import com.recipe.recipesite.service.JwtService;
 
 import io.jsonwebtoken.io.IOException;
 import lombok.RequiredArgsConstructor;
