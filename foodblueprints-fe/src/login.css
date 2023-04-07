@@ -1,19 +1,67 @@
+:root {
+    --blue-color: #279af1;
+    --white-color:#e6e6e6;
+    --black-color: #1D201F;
+
+}
 .Login {
    display: flex;
    flex-direction: column;
    align-items: center;
+   margin-top: 3rem;
 }
-.login-form {
+.login-form-container {
     max-width: 80ch;
     display: flex;
     flex-direction: column;
-}
-
-input {
-    margin-bottom: 1rem;
+    background-color: oldlace;
     padding: 1rem;
+    border-radius: 15px;
+    align-items: center;
 }
 
-button {
+.Login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Login input {
     margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border-style: none;
+    
+}
+
+.Login input[type=submit] {
+    background-color: black;
+    color: var(--white-color);
+    border-radius: 10px;
+    width: 60%;
+    font-weight: bold;
+
+}
+
+.Login input[type=submit]:hover {
+    background-color: var(--blue-color);
+    color: var(--black-color);
+    border-radius: 10px;
+    width: 60%;
+    font-weight: bold;
+
+}
+.Login h1 {
+    margin: 2rem;
+}
+.Login h2 {
+    margin: 2rem;
+}
+
+.Login a {
+    text-decoration: none;
+    color: var(--black-color);
+}
+
+.Login a:hover {
+    color: var(--blue-color);
 }
