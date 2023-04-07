@@ -1,5 +1,7 @@
 package com.recipe.recipesite.service;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +25,8 @@ import com.recipe.recipesite.model.token.TokenRepository;
 import com.recipe.recipesite.model.token.TokenType;
 import com.recipe.recipesite.model.users.UserRepository;
 
+import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatcher;
+
 import io.jsonwebtoken.io.IOException;
 import lombok.RequiredArgsConstructor;
 
@@ -37,8 +41,20 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-
+    private final User userProbe = new User();
+    
     public AuthenticationResponse register(RegisterRequest request) {
+      
+      // Check if user already exsists.
+      userProbe.setEmail(request.getEmail());
+      ExampleMatcher userMatcher = ExampleMatcher.matching()
+        .withIgnorePaths("id")
+        .withMatcher("model", new GenericPropertyMatcher().ignoreCase());
+      Example<User> example = Example.of(userProbe, userMatcher);
+
+      if (repository.exists(example))
+        return null;
+
         var user = User.builder()
             .firstname(request.getFirstname())
             .lastname(request.getLastname())
