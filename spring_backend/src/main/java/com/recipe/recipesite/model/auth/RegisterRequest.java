@@ -1,4 +1,4 @@
-package com.recipe.recipesite.controller.auth;
+package com.recipe.recipesite.model.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

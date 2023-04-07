@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
+import com.recipe.recipesite.model.auth.AuthenticationRequest;
+import com.recipe.recipesite.model.auth.AuthenticationResponse;
+import com.recipe.recipesite.model.auth.RegisterRequest;
+import com.recipe.recipesite.service.AuthenticationService;
 
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;
