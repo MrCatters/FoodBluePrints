@@ -13,4 +13,5 @@
 
 .Header * {
     color: var(--white-color);
+    margin-inline: 1rem;
 }
