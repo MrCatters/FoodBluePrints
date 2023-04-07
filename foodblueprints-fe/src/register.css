@@ -1,3 +1,7 @@
+:root {
+    --light-blue: rgb(230, 241, 253);
+    --lesslight-blue:rgb(213, 230, 255); 
+}
 .Register {
     display: flex;
     flex-direction: column;
@@ -8,7 +12,7 @@
      max-width: 80ch;
      display: flex;
      flex-direction: column;
-     background-color: oldlace;
+     background-color: var(--light-blue);
      padding: 1rem;
      border-radius: 15px;
      align-items: center;
@@ -24,6 +28,7 @@
      padding: 1rem;
      border-radius: 10px;
      border-style: none;
+     background-color: var(--lesslight-blue);
      
  }
  

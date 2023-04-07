@@ -5,7 +5,7 @@ import React from "react";
 function Header() {
     return(
         <div className="Header">
-            <h2>Hello</h2>
+            <h3>FoodBlueprints</h3>
         </div>
     );
 }

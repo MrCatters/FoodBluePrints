@@ -2,6 +2,8 @@
     --blue-color: #279af1;
     --white-color:#e6e6e6;
     --black-color: #1D201F;
+    --light-blue: rgb(230, 241, 253);
+    --lesslight-blue:rgb(213, 230, 255); 
 
 }
 .Login {
@@ -14,7 +16,7 @@
     max-width: 80ch;
     display: flex;
     flex-direction: column;
-    background-color: oldlace;
+    background-color: var(--light-blue);
     padding: 1rem;
     border-radius: 15px;
     align-items: center;
@@ -30,6 +32,7 @@
     padding: 1rem;
     border-radius: 10px;
     border-style: none;
+    background-color: var(--lesslight-blue)
     
 }
 
@@ -65,3 +68,7 @@
 .Login a:hover {
     color: var(--blue-color);
 }
+
+.Login p {
+    font-weight: bolder;
+ }

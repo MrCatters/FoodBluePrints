@@ -7,7 +7,8 @@ import { useSignIn } from "react-auth-kit";
 function Login(props){
 
     const [u_pass,setPass] = useState();
-    const [u_email, setEmail] = useState();    
+    const [u_email, setEmail] = useState();
+    const [passvalid,setPassvalid] = useState();
     const navigate = useNavigate();
     const signIn = useSignIn();
 
@@ -19,8 +20,6 @@ function Login(props){
         })
         .then(function (response) {
             
-            console.log(response)
-            console.log(response.data.access_token);
             signIn({
                 token: response.data.access_token,
                 expiresIn:3600,
@@ -33,6 +32,10 @@ function Login(props){
         })
         .catch(function(error) {
             console.log(error)
+            if (error.response.status === 403) {
+                setPassvalid("Incorrect password or email")
+            }
+
         });
 
     }
@@ -47,7 +50,9 @@ function Login(props){
 
                     <input type = "submit" value = "Submit"/>
                 </form>
+                <p>{passvalid}</p>
                 <Link to = "/register">Don't have an account? Sign up</Link>
+                
             </div>
            
         </div>
