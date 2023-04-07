@@ -8,7 +8,8 @@ import { Route, Routes } from "react-router-dom"
 
 function App() {
   const [username, setUsername] = useState();
-  const [password, setPassword] = useState()
+  const [password, setPassword] = useState();
+  const [token,setToken] = useState();
   
   return (
     <Routes>

@@ -5,7 +5,7 @@ const useAuth = () => {
     return false;
 }
 
-function ProtectedRoutes() {
+function ProtectedRoutes(props) {
     const isAuth = useAuth();
     return isAuth ? <Outlet /> : <Login />;
 }
