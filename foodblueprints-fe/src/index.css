@@ -1,5 +1,14 @@
+:root {
+  --blue-color: #228CDB;
+  --white-color:#e6e6e6;
+  --black-color: #1D201F;
+
+
+}
+
 html {
   margin: 0;
+  background-color: var(--white-color);
 }
 
 * {
