@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import axios from 'axios';
 import { Link } from "react-router-dom"
 
-function Login(){
+function Login(props){
     return (
         <div className="Login">
             <h2>Login</h2>
