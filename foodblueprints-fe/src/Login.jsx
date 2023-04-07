@@ -46,7 +46,7 @@ function Login(props){
             <div className="login-form-container">
                 <form onSubmit = {handleSubmit} className="login-form">
                     <input type = "text" required onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter username.."/>
-                    <input type = "text" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
+                    <input type = "password" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
 
                     <input type = "submit" value = "Sign in"/>
                 </form>

@@ -55,8 +55,8 @@ function Register() {
                     <input type = "text" required  onChange = {(e) => setF_name(e.target.value)}id = "f_name"  placeholder="first name.."/>
                     <input type = "text" required  onChange = {(e) => setL_name(e.target.value)}id = "l_name"  placeholder="last name.."/>   
                     <input type = "text" required  onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter email.."/>
-                    <input type = "text" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
-                    <input type = "text" required id = "password1" onChange = {(e) => setPass2(e.target.value)} placeholder="enter password again..."/>
+                    <input type = "password" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>
+                    <input type = "password" required id = "password1" onChange = {(e) => setPass2(e.target.value)} placeholder="enter password again..."/>
 
                     <input type = "submit" value = "Sign up"/>
                 </form>
