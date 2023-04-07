@@ -1,0 +1,10 @@
+.Login {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.login-form {
+    max-width: 80ch;
+    display: flex;
+    flex-direction: column;
+}
