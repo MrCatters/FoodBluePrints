@@ -41,7 +41,6 @@ public class Recipe {
 
     private Time timeAdded;
 
-    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 }
