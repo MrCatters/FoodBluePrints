@@ -6,12 +6,6 @@
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"forwardPorts": [5432],
-	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
-			"nodeGypDependencies": true,
-			"version": "lts"
-		}
-	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {}
