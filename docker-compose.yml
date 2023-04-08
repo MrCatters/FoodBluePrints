@@ -1,0 +1,33 @@
+version: '1.0'
+
+services:
+  app:
+    container_name: springapi
+    image: springapi
+    build: ./spring_backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresdb:5432/recipe_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresdb
+    restart: on-failure:10
+    
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:alpine3.17
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      # NOTE: POSTGRES_DB/USER/PASSWORD should match values in app container
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: recipe_db
+
+volumes:
+  postgres-data:
