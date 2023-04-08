@@ -1,4 +1,4 @@
-version: '1.0'
+version: '3.9'
 
 services:
   app:
@@ -28,6 +28,14 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: recipe_db
+  
+  foodblueprints-fe:
+    container_name: foodblueprints-fe
+    build: ./foodblueprints-fe
+    ports:
+    - "3000:3000"
+    restart: always
+
 
 volumes:
   postgres-data:
