@@ -1,6 +1,34 @@
 {
     "configurations": [
         {
+            "type": "node",
+            "name": "node install",
+            "request": "launch",
+            "runtimeArgs": [
+                "install",
+            ],
+            "runtimeExecutable": "npm",
+            "program": "${workspaceFolder}/foodblueprints-fe/",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "name": "node start",
+            "request": "launch",
+            "runtimeArgs": [
+                "start",
+            ],
+            "runtimeExecutable": "npm",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.recipe.recipesite.Main",
+            "projectName": ""
+        },
+        {
             "type": "java",
             "name": "Main",
             "request": "launch",
