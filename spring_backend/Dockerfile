@@ -1,5 +1,11 @@
+FROM eclipse-temurin:17.0.6_10-jdk-alpine as build
+WORKDIR ./Group-12-Final-Project
 
-FROM eclipse-temurin:17.0.6_10-jre-alpine
-ARG JAR_FILE=./target/*.jar
-COPY ./target/RecipeAPI-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw  install -DskipTests
+
+ENTRYPOINT ["java","-jar","/root/.m2/repository/com/recipe/RecipeAPI/0.0.1-SNAPSHOT/RecipeAPI-0.0.1-SNAPSHOT.jar"]
