@@ -22,7 +22,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
     environment:
       # NOTE: POSTGRES_DB/USER/PASSWORD should match values in app container
       POSTGRES_PASSWORD: postgres
@@ -38,7 +38,3 @@ services:
     ports:
     - "3000:3000"
     restart: always
-
-
-volumes:
-  postgres-data:

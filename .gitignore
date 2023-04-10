@@ -156,5 +156,10 @@ cython_debug/
 .idea
 .idea/
 
+# Node.js
 node_modules
 node_modules/
+
+# Postgres DB
+db
+db/
