@@ -46,7 +46,7 @@ public class AuthenticationService {
     
     public AuthenticationResponse register(RegisterRequest request) {
       
-      // Check if user already exsists.
+      // Check if user already exists.
       userProbe.setEmail(request.getEmail());
       ExampleMatcher userMatcher = ExampleMatcher.matching()
         .withIgnorePaths("id")

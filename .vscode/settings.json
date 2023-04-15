@@ -1,3 +1,29 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol"
+            },
+            "previewLimit": 50,
+            "server": "127.0.0.1",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "ITCS 3160",
+            "username": "root",
+            "password": "Zack8406",
+            "connectionTimeout": 999999999999999,
+            "database": "classicmodels"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Recipe DB",
+            "database": "recipe_db",
+            "username": "postgres",
+            "password": "postgres"
+        }
+    ]
 }

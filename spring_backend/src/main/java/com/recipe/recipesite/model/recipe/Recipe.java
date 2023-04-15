@@ -1,7 +1,10 @@
 package com.recipe.recipesite.model.recipe;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.recipe.recipesite.model.users.User;
 
@@ -37,7 +40,11 @@ public class Recipe {
     @Lob
     private byte[] image;
 
-    private Time timeAdded;
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+    
+    @UpdateTimestamp
+    private LocalDateTime dateUpdated;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
