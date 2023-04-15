@@ -1,4 +1,4 @@
-package com.recipe.recipesite.service;
+package com.recipe.recipesite.service.auth;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -24,6 +24,7 @@ import com.recipe.recipesite.model.token.Token;
 import com.recipe.recipesite.model.token.TokenRepository;
 import com.recipe.recipesite.model.token.TokenType;
 import com.recipe.recipesite.model.users.UserRepository;
+import com.recipe.recipesite.service.token.JwtService;
 
 import org.springframework.data.domain.ExampleMatcher.GenericPropertyMatcher;
 

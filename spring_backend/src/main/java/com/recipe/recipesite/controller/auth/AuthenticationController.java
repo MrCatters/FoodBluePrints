@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.recipe.recipesite.model.auth.AuthenticationRequest;
 import com.recipe.recipesite.model.auth.AuthenticationResponse;
 import com.recipe.recipesite.model.auth.RegisterRequest;
-import com.recipe.recipesite.service.AuthenticationService;
+import com.recipe.recipesite.service.auth.AuthenticationService;
 
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.http.HttpServletRequest;

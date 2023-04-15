@@ -1,4 +1,4 @@
-package com.recipe.recipesite.service;
+package com.recipe.recipesite.service.token;
 
 
 import java.security.Key;
