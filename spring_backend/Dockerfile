@@ -7,6 +7,7 @@ COPY pom.xml .
 COPY src src
 
 RUN chmod +x mvnw
+RUN sed -i 's/\r$//' mvnw
 
 RUN ./mvnw  install -DskipTests
 
