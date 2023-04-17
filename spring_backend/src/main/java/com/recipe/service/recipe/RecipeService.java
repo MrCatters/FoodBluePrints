@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.recipe.model.recipe.Recipe;
 import com.recipe.model.recipe.RecipeRepository;
 import com.recipe.model.recipe.RecipeResponse;
+import com.recipe.model.recipe.RecipesRequest;
 import com.recipe.model.recipe.UserRecipePost;
-import com.recipe.model.recipe.UserRecipesRequest;
 import com.recipe.model.users.User;
 import com.recipe.service.auth.AuthenticationService;
 
@@ -23,15 +23,9 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final AuthenticationService authenticationService;
 
-    public RecipeResponse usersRecipes(UserRecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findByUser(request.getUser());
-        return RecipeResponse.builder()
-                            .recipes(recipes)
-                            .build();
-    }
-
     public void postRecipe(UserRecipePost post, HttpServletRequest httpServletRequest) throws Exception{
-        final User existingUser = authenticationService.getUser(httpServletRequest);
+        User existingUser = (authenticationService.getUser(httpServletRequest));
+
 
         final Recipe newRecipe = Recipe.builder()
                                 .dateCreated(LocalDateTime.now())
@@ -46,5 +40,22 @@ public class RecipeService {
                                 .contents(post.getContents())
                                 .build();
         recipeRepository.save(newRecipe);
+    }
+
+    public RecipeResponse getRecipesByFirstUserName(RecipesRequest request) {
+        List<Recipe> recipes = recipeRepository.findAllRecipesByFirstName(request.getSearchString());
+        return buildRecipeResponse(recipes);
+    }
+
+
+    public RecipeResponse getRecipesByName(RecipesRequest request) {
+        List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
+        return buildRecipeResponse(recipes);
+    }
+
+    public static RecipeResponse buildRecipeResponse(List<Recipe> recipes) {
+        return RecipeResponse.builder()
+                            .recipes(recipes)
+                            .build();
     }
 }

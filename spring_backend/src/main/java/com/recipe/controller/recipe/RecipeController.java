@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.recipe.model.recipe.RecipeResponse;
+import com.recipe.model.recipe.RecipesRequest;
 import com.recipe.model.recipe.UserRecipePost;
-import com.recipe.model.recipe.UserRecipesRequest;
 import com.recipe.service.recipe.RecipeService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,10 +34,16 @@ public class RecipeController {
             return ResponseEntity.ok(HttpStatus.ACCEPTED);
         }
 
-    @GetMapping("/published_recipes")
-    public ResponseEntity<RecipeResponse> publishedRecipes(
-        @RequestBody UserRecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.usersRecipes(request));
+    @GetMapping("/name_recipes")
+    public ResponseEntity<RecipeResponse> recipesByName(
+        @RequestBody RecipesRequest request) throws Exception{
+            return ResponseEntity.ok(service.getRecipesByName(request));
         }
 
+    @GetMapping("/user_first_name_recipes")
+    public ResponseEntity<RecipeResponse> recipesByFirstUserName(
+        @RequestBody RecipesRequest request) throws Exception{
+            return ResponseEntity.ok(service.getRecipesByFirstUserName(request));
+        }
+        
 }
