@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "24bbbfcd-db88-4a31-b0a9-b57614c389c7",
+		"_postman_id": "ef1a74ad-437e-4fb1-b979-476f05171f60",
 		"name": "FoodBluePrints",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -54,6 +54,9 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {

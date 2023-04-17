@@ -16,8 +16,17 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
         SELECT t.* FROM recipes t\s 
         INNER JOIN _user u\s
         ON t.user_id = u.id\s 
-        WHERE u.first_name = :first\s
+        WHERE u.first_name LIKE :first\s
         """,
         nativeQuery=true)
     List<Recipe> findAllRecipesByFirstName(@Param("first") String firstName);
+
+    @Query(value = """
+        SELECT t.* FROM recipes t\s 
+        INNER JOIN _user u\s
+        ON t.user_id = u.id\s 
+        WHERE u.last_name LIKE :last\s
+        """,
+        nativeQuery=true)
+    List<Recipe> findAllRecipesByLastName(@Param("last") String lastName);
 }

@@ -46,4 +46,9 @@ public class RecipeController {
             return ResponseEntity.ok(service.getRecipesByFirstUserName(request));
         }
         
+    @GetMapping("/user_last_name_recipes")
+    public ResponseEntity<RecipeResponse> recipesByLastUserName(
+        @RequestBody RecipesRequest request) throws Exception{
+            return ResponseEntity.ok(service.getRecipesByLastUserName(request));
+        }
 }
