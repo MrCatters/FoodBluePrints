@@ -47,9 +47,13 @@ public class RecipeService {
         return buildRecipeResponse(recipes);
     }
 
-
     public RecipeResponse getRecipesByName(RecipesRequest request) {
         List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
+        return buildRecipeResponse(recipes);
+    }
+
+    public RecipeResponse getRecipesByLastUserName(RecipesRequest request) {
+        List<Recipe> recipes = recipeRepository.findAllRecipesByLastName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
