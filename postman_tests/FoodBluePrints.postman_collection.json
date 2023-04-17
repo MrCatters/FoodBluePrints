@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "43d683b0-865a-47e9-aabe-9cac0d4e65b9",
+		"_postman_id": "24bbbfcd-db88-4a31-b0a9-b57614c389c7",
 		"name": "FoodBluePrints",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -47,7 +47,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = pm.response.json();\r",
-							"pm.environment.set(\"access_token\", jsonData.access_token);"
+							"pm.collectionVariables.set(\"access_token\", jsonData.access_token);"
 						],
 						"type": "text/javascript"
 					}
@@ -172,6 +172,9 @@
 		},
 		{
 			"name": "Find Recipes By User Information",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -183,11 +186,11 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userInfo\" : \"test\"\r\n}",
+					"raw": "{\r\n    \"searchString\" : \"test\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -195,7 +198,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/published_recipes",
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/user_first_name_recipes",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -208,7 +211,7 @@
 						"api",
 						"v1",
 						"recipe",
-						"published_recipes"
+						"user_first_name_recipes"
 					]
 				}
 			},
@@ -260,6 +263,42 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": ""
 		}
 	]
 }
