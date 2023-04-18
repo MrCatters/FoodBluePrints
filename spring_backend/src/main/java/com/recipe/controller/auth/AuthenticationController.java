@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin("http://127.0.0.1:3000")
+@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
