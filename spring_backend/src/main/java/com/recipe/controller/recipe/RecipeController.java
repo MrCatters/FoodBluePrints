@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
+@CrossOrigin({"*"})
 @RequestMapping("/api/v1/recipe")
 @RequiredArgsConstructor
 public class RecipeController {
