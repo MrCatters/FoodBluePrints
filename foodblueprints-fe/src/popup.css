@@ -3,9 +3,7 @@
     --white-color:#e6e6e6;
     --black-color: #1D201F;
 }
-* {
-    color: var(--white-color);
-}
+
 .popup {
     position: fixed;
     top: 0;
@@ -32,13 +30,13 @@
     border-radius: 10px;
 }
 
-form {
+.popup form {
     display: flex;
     flex-direction: column;
     
     
 }
-form * {
+.popup form * {
     margin: 1rem;
     padding: 1rem;
     background-color: #4b4b4b;
@@ -46,7 +44,7 @@ form * {
     border-radius: 5px;
 }
 
-textarea {
+.popup textarea {
     min-width: 40ch;
     min-height: 30ch;
 }

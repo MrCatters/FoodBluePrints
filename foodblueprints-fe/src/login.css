@@ -32,7 +32,8 @@
     padding: 1rem;
     border-radius: 10px;
     border-style: none;
-    background-color: var(--lesslight-blue)
+    background-color: var(--lesslight-blue);
+    color: #1D201F;
     
 }
 
