@@ -1,0 +1,69 @@
+:root {
+    --blue-color: #279af1;
+    --white-color:#e6e6e6;
+    --black-color: #1D201F;
+}
+* {
+    color: var(--white-color);
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-inner {
+    position: relative;
+    padding: 3rem;
+   
+    max-width: 640px;
+    background-color: var(--black-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+form * {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #4b4b4b;
+    border: 0px;
+    border-radius: 5px;
+}
+
+textarea {
+    min-width: 40ch;
+    min-height: 30ch;
+}
+
+button {
+    max-width: 5rem;
+    border: 0px;
+
+    align-self: center;
+    background-color: var(--blue-color);
+}
+
+button:hover {
+    max-width: 5rem;
+    border: 0px;
+    align-self: center;
+    background-color: var(--blue-color);
+    transform: scale(1.25);
+}
+
