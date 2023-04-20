@@ -4,6 +4,13 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "mainClass": "com.recipe.Main",
+            "projectName": "recipe-site"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "mainClass": "com.recipe.recipesite.Main",
             "projectName": "recipe-site"
         },

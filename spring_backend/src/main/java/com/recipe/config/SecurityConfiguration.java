@@ -35,7 +35,10 @@ public class SecurityConfiguration {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .cors()
+            .and()
+            .httpBasic();
         return http.build();
     }
 }
