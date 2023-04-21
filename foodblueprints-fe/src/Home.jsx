@@ -8,9 +8,6 @@ function Home(){
         <div className="Home">
             <Header />
             <h1>This website is under construction, sit tight...</h1>
-            <AddPopup trigger = { true }>
-
-            </AddPopup>
         </div>
         
     );
