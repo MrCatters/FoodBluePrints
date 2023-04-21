@@ -4,6 +4,15 @@
     --black-color: #1D201F;
 }
 
+.popup * {
+    color: var(--white-color);
+}
+
+
+
+li:hover {
+    color: var(--blue-color);
+}
 .popup {
     position: fixed;
     top: 0;
