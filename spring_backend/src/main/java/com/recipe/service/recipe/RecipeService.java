@@ -3,6 +3,7 @@ package com.recipe.service.recipe;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -61,5 +62,10 @@ public class RecipeService {
         return RecipeResponse.builder()
                             .recipes(recipes)
                             .build();
+    }
+
+    public void deleteRecipesById(Integer recipeId) throws IllegalArgumentException{
+        recipeRepository.findById(recipeId).orElseThrow(() -> new IllegalArgumentException());
+        recipeRepository.deleteById(recipeId);
     }
 }

@@ -32,7 +32,6 @@ public class Recipe {
     
     @Id
     @GeneratedValue
-    @JsonIgnore
     private Integer id;
 
     private String name;
