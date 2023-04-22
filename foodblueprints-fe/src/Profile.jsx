@@ -6,6 +6,7 @@ import "./profile.css"
 
 function Profile() {
     let userEmail;
+    let name;
     let recipes;
     const cookiearray = document.cookie.split('=')
     const cookietemp = (cookiearray[1]);
@@ -20,6 +21,7 @@ function Profile() {
     .then(function(response) {
         console.log(response)
         userEmail = response.data.email
+        name = response.data.firstname
         console.log(userEmail)
     }).catch(function (error) {
         console.log(error)
@@ -29,32 +31,27 @@ function Profile() {
         "searchString": "test@gmail.com"
       });
       
-      let config = {
-        method: 'get',
-        maxBodyLength: Infinity,
-        url: 'http://127.0.0.1:8080/api/v1/recipe/user_email_recipes',
-        headers: { 
-          'Content-Type': 'application/json', 
-          'Authorization': `Bearer ${cookie}`
-        },
-        data : data
-      };
-      
-      axios.request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log()
-        console.log(error);
-      });
-
+    axios.get("http://127.0.0.1:8080/api/v1/recipe/user_email_recipes",{
+      headers: {
+          "Authorization": `Bearer ${cookie}`,
+      }
+    }, {
+      "searchString": `${userEmail}`
+    })
+    .then(function(response){
+        console.log("---success----")
+        console.log(response)
+    })
+    .catch(function(error){
+        console.log("---fail----")
+        console.log(error)
+    }); 
     return (
         
         <div className="profile">
             <Header />
             <div className="container">
-                <h1>Welcome back, Joe</h1>
+                <h1>Welcome back, Lorem</h1>
                 <h2>Your Recipies</h2>
                 <RecipeCard title="recipe 1" author="author 1" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tellus mauris a diam maecenas sed enim ut sem viverra. Id diam maecenas ultricies mi eget mauris pharetra et. Egestas congue quisque egestas diam in. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Dui id ornare arcu odio ut sem nulla pharetra. Ac odio tempor orci dapibus ultrices. Sed adipiscing diam donec adipiscing. Tincidunt eget nullam non nisi est sit amet facilisis. Diam quam nulla porttitor massa. Tellus elementum sagittis vitae et leo. Vel turpis nunc eget lorem dolor sed viverra ipsum."></RecipeCard>
                 
