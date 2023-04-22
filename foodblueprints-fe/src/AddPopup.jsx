@@ -30,6 +30,8 @@ function AddPopup(props) {
         })
         .then(function(response) {
             console.log(response);
+            props.setTrigger(false);
+            window.alert("recipe succesffuly submitted")
             setTitle("");
             setContent("");
             setImage("");
@@ -42,11 +44,14 @@ function AddPopup(props) {
     return (props.trigger) ? ( 
         <div className="popup">
             <div className="popup-inner">
+                <div className="closeContainer">
+                    <button className="closeAppPopup" onClick={e => props.setTrigger(false)}>✕</button>
+                </div>
                 <h2>Create a new recipe!</h2>
                 <form onSubmit={ submitHandler }>
                     <input type = "text" id = "title" required onChange = {(e) => setTitle(e.target.value)} placeholder="Title of recipe..."></input>
                     <textarea id = "content" required onChange={(e) => setContent(e.target.value)} placeholder="enter recipe here.."></textarea>
-                    <button type="submit" >Submit</button>
+                    <button className = "submit" type="submit" >Submit</button>
                 </form>
             </div>
         </div>
