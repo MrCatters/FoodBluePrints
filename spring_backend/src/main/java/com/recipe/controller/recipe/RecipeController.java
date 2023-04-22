@@ -44,13 +44,19 @@ public class RecipeController {
     @GetMapping("/user_first_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByFirstUserName(
         @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByFirstUserName(request));
+            return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
         }
         
     @GetMapping("/user_last_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByLastUserName(
         @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByLastUserName(request));
+            return ResponseEntity.ok(service.getRecipesByUserLastName(request));
+        }
+
+    @GetMapping("/user_email_recipes")
+    public ResponseEntity<RecipeResponse> recipesByUserEmail(
+        @RequestBody RecipesRequest request) throws Exception{
+            return ResponseEntity.ok(service.getRecipesByUserEmail(request));
         }
 
     @PostMapping("/delete_recipe")

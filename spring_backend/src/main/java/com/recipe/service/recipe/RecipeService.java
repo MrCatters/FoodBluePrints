@@ -41,21 +41,27 @@ public class RecipeService {
                                 .build();
         recipeRepository.save(newRecipe);
     }
-
-    public RecipeResponse getRecipesByFirstUserName(RecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findAllRecipesByFirstName(request.getSearchString());
-        return buildRecipeResponse(recipes);
-    }
-
+    
     public RecipeResponse getRecipesByName(RecipesRequest request) {
         List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
-    public RecipeResponse getRecipesByLastUserName(RecipesRequest request) {
+    public RecipeResponse getRecipesByUserFirstName(RecipesRequest request) {
+        List<Recipe> recipes = recipeRepository.findAllRecipesByFirstName(request.getSearchString());
+        return buildRecipeResponse(recipes);
+    }
+
+    public RecipeResponse getRecipesByUserLastName(RecipesRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByLastName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
+
+    public RecipeResponse getRecipesByUserEmail(RecipesRequest request) {
+        List<Recipe> recipes = recipeRepository.findAllRecipesByEmail(request.getSearchString());
+        return buildRecipeResponse(recipes);
+    }
+
 
     public static RecipeResponse buildRecipeResponse(List<Recipe> recipes) {
         return RecipeResponse.builder()
