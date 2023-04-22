@@ -16,7 +16,7 @@ function Header() {
                     <Link to = "/profile" >profile</Link>
                 </ul>
             </div>
-            <AddPopup trigger = { popup }></AddPopup>    
+            <AddPopup trigger = { popup } setTrigger = {setPopup}></AddPopup>    
         </div>
        
     );

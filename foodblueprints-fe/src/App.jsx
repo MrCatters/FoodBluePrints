@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './App.css';
+import './global.css';
 import Header from './Header';
 import Register from "./Register";
 import Home from "./Home";
