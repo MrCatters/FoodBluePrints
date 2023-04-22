@@ -25,23 +25,29 @@ function Profile() {
         console.log(error)
     });
 
-    axios.get("http://127.0.0.1:8080/api/v1/recipe/user_email_recipes", {
-        "searchString": `${userEmail}`
-    }, 
-    {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${cookie}`
-        }
-    })
-    .then(function(response){
-        console.log("---success----")
-        console.log(response)
-    })
-    .catch(function(error){
-        console.log("---fail----")
-        console.log(error)
-    }); 
+    let data = JSON.stringify({
+        "searchString": "test@gmail.com"
+      });
+      
+      let config = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:8080/api/v1/recipe/user_email_recipes',
+        headers: { 
+          'Content-Type': 'application/json', 
+          'Authorization': `Bearer ${cookie}`
+        },
+        data : data
+      };
+      
+      axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log()
+        console.log(error);
+      });
 
     return (
         
