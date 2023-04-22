@@ -15,13 +15,11 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfiguration {
-    // FIX
     private final JwtAuthenticationFilters jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        // TO-DO: REMOVE CSRF DISABLE LATER
         http
             .csrf()
             .disable()

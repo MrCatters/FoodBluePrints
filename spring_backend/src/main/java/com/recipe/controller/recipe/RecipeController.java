@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.recipe.model.recipe.RecipeDeletionRequest;
 import com.recipe.model.recipe.RecipeResponse;
 import com.recipe.model.recipe.RecipesRequest;
 import com.recipe.model.recipe.UserRecipePost;
@@ -43,12 +44,29 @@ public class RecipeController {
     @GetMapping("/user_first_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByFirstUserName(
         @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByFirstUserName(request));
+            return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
         }
         
     @GetMapping("/user_last_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByLastUserName(
         @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByLastUserName(request));
+            return ResponseEntity.ok(service.getRecipesByUserLastName(request));
+        }
+
+    @GetMapping("/user_email_recipes")
+    public ResponseEntity<RecipeResponse> recipesByUserEmail(
+        @RequestBody RecipesRequest request) throws Exception{
+            return ResponseEntity.ok(service.getRecipesByUserEmail(request));
+        }
+
+    @PostMapping("/delete_recipe")
+    public ResponseEntity<HttpStatus> removeRecipeById(
+        @RequestBody RecipeDeletionRequest request) {
+            try {
+                service.deleteRecipesById(request.getRecipeId());
+            } catch (Exception e){
+                return ResponseEntity.ok(HttpStatus.NOT_FOUND);
+            }
+            return ResponseEntity.ok(HttpStatus.ACCEPTED);
         }
 }

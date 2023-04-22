@@ -1,0 +1,39 @@
+
+.recipe-card {
+    background-color: var(--black-color);
+    width: 640px;
+    max-width: 70%;
+  
+    align-items: center;
+
+    margin: 1rem;
+    border-radius: 10px;
+}
+
+.recipe-card * {
+   
+    color: var(--white-color);
+    margin: 1rem;
+   
+    
+   
+}
+
+.header-container {
+    display: flex;
+    background-color: var(--lighter-gray);
+    justify-content: space-between;
+    border-radius: 10px;
+
+    
+}
+
+
+
+.content {
+    background-color: var(--lighter-gray);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+

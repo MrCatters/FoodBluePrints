@@ -29,4 +29,15 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
         """,
         nativeQuery=true)
     List<Recipe> findAllRecipesByLastName(@Param("last") String lastName);
+
+    @Query(value = """
+        SELECT t.* FROM recipes t\s 
+        INNER JOIN _user u\s
+        ON t.user_id = u.id\s 
+        WHERE u.email LIKE :email\s
+        """,
+        nativeQuery=true)
+    List<Recipe> findAllRecipesByEmail(@Param("email") String email);
+
+    void deleteById(Integer id);
 }
