@@ -197,6 +197,40 @@
 			"response": []
 		},
 		{
+			"name": "Delete Recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipeId\": \"202\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/delete_recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"delete_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Find Recipes By User First Name",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -308,13 +342,16 @@
 			"response": []
 		},
 		{
-			"name": "Delete Recipe",
+			"name": "Find Recipes By Authenticated User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"recipeId\": \"202\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -322,7 +359,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/delete_recipe",
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/auth_users_recipes",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -335,7 +372,7 @@
 						"api",
 						"v1",
 						"recipe",
-						"delete_recipe"
+						"auth_users_recipes"
 					]
 				}
 			},

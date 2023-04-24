@@ -73,4 +73,10 @@ public class RecipeService {
         recipeRepository.findById(recipeId).orElseThrow(() -> new IllegalArgumentException());
         recipeRepository.deleteById(recipeId);
     }
+
+    public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest){
+        User existingUser = (authenticationService.getUser(httpServletRequest));
+        List<Recipe> recipes = recipeRepository.findAllRecipesByUserId(existingUser.getId());
+        return buildRecipeResponse(recipes);
+    }
 }

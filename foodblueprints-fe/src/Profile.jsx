@@ -30,7 +30,7 @@ function Profile() {
       });
       
       let config = {
-        method: 'get',
+        method: 'post',
         maxBodyLength: Infinity,
         url: 'http://127.0.0.1:8080/api/v1/recipe/user_email_recipes',
         headers: { 

@@ -1,6 +1,5 @@
 package com.recipe.controller.recipe;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,53 +19,59 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
+@CrossOrigin({ "http://127.0.0.1:3000", "http://localhost:3000" })
 @RequestMapping("/api/v1/recipe")
 @RequiredArgsConstructor
 public class RecipeController {
-    
+
     private final RecipeService service;
 
     @PostMapping("/post_recipe")
     public ResponseEntity<HttpStatus> postRecipe(
-        @RequestBody UserRecipePost post,
-        HttpServletRequest httpServletRequest) throws Exception{
-            service.postRecipe(post, httpServletRequest);
-            return ResponseEntity.ok(HttpStatus.ACCEPTED);
-        }
+            @RequestBody UserRecipePost post,
+            HttpServletRequest httpServletRequest) throws Exception {
+        service.postRecipe(post, httpServletRequest);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
 
     @GetMapping("/name_recipes")
     public ResponseEntity<RecipeResponse> recipesByName(
-        @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByName(request));
-        }
+            @RequestBody RecipesRequest request) throws Exception {
+        return ResponseEntity.ok(service.getRecipesByName(request));
+    }
 
     @GetMapping("/user_first_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByFirstUserName(
-        @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
-        }
-        
+            @RequestBody RecipesRequest request) throws Exception {
+        return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
+    }
+
     @GetMapping("/user_last_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByLastUserName(
-        @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByUserLastName(request));
-        }
+            @RequestBody RecipesRequest request) throws Exception {
+        return ResponseEntity.ok(service.getRecipesByUserLastName(request));
+    }
 
-    @GetMapping("/user_email_recipes")
+    @PostMapping("/user_email_recipes")
     public ResponseEntity<RecipeResponse> recipesByUserEmail(
-        @RequestBody RecipesRequest request) throws Exception{
-            return ResponseEntity.ok(service.getRecipesByUserEmail(request));
-        }
+            @RequestBody RecipesRequest request) throws Exception {
+        return ResponseEntity.ok(service.getRecipesByUserEmail(request));
+    }
 
     @PostMapping("/delete_recipe")
     public ResponseEntity<HttpStatus> removeRecipeById(
-        @RequestBody RecipeDeletionRequest request) {
-            try {
-                service.deleteRecipesById(request.getRecipeId());
-            } catch (Exception e){
-                return ResponseEntity.ok(HttpStatus.NOT_FOUND);
-            }
-            return ResponseEntity.ok(HttpStatus.ACCEPTED);
+            @RequestBody RecipeDeletionRequest request) {
+        try {
+            service.deleteRecipesById(request.getRecipeId());
+        } catch (Exception e) {
+            return ResponseEntity.ok(HttpStatus.NOT_FOUND);
         }
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/auth_users_recipes")
+    public ResponseEntity<RecipeResponse> getRecipeByAuth(
+            HttpServletRequest httpServletRequest) throws Exception {
+        return ResponseEntity.ok(service.getRecipeByAuth(httpServletRequest));
+    }
 }
