@@ -39,7 +39,7 @@ function AddPopup(props) {
         .catch(function(error) {
             console.log(error)
         });
-        
+        window.location.reload();
     }
     return (props.trigger) ? ( 
         <div className="popup">

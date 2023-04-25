@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,8 +34,11 @@ public class Recipe {
     @GeneratedValue
     private Integer id;
 
+    @Lob
+    @Column
     private String name;
 
+    @Lob
     private String contents;
 
     @Lob
