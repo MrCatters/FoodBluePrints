@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./login.css";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom"
-import { useSignIn } from "react-auth-kit";
+import { useSignIn, useSignOut } from "react-auth-kit";
 
 function Login(props){
 
@@ -11,6 +11,7 @@ function Login(props){
     const [passvalid,setPassvalid] = useState();
     const navigate = useNavigate();
     const signIn = useSignIn();
+    const signOut = useSignOut();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,12 +20,14 @@ function Login(props){
             "password": u_pass,
         })
         .then(function (response) {
-            
+            console.log(response)
+            signOut()
             signIn({
                 token: response.data.access_token,
-                expiresIn:3600,
+                expiresIn: 100,
                 tokenType: "Bearer",
                 authState: { email: u_email},
+                refreshToken: response.data.refresh_token
             });
 
             navigate("/home")
