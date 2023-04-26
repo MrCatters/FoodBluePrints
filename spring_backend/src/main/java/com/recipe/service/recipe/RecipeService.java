@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.recipe.model.recipe.Recipe;
@@ -13,6 +14,7 @@ import com.recipe.model.recipe.RecipesRequest;
 import com.recipe.model.recipe.UserRecipePost;
 import com.recipe.model.users.User;
 import com.recipe.service.auth.AuthenticationService;
+import com.recipe.utils.NullUtils;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -75,8 +77,28 @@ public class RecipeService {
     }
 
     public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest){
-        User existingUser = (authenticationService.getUser(httpServletRequest));
+        User existingUser = authenticationService.getUser(httpServletRequest);
         List<Recipe> recipes = recipeRepository.findAllRecipesByUserId(existingUser.getId());
         return buildRecipeResponse(recipes);
+    }
+
+    public void patchRecipeEntity(Recipe updatedRecipe, HttpServletRequest httpServletRequest) throws ResourceNotFoundException{
+
+        Integer recipeId = updatedRecipe.getId();
+        Integer userId = authenticationService.getUser(httpServletRequest).getId();
+
+        if (recipeRepository.checkMatchingRecipe(recipeId, userId)){
+            Recipe existingRecipe = recipeRepository.findById(recipeId)
+                                                    .orElseThrow(() -> new ResourceNotFoundException(
+                                                    "Recipe id does not match with an existing recipe"));
+            NullUtils.updateIfPresent(existingRecipe::setImage, updatedRecipe.getImage());
+            NullUtils.updateIfPresent(existingRecipe::setName, updatedRecipe.getName());
+            NullUtils.updateIfPresent(existingRecipe::setContents, updatedRecipe.getContents());
+            existingRecipe.setDateUpdated(LocalDateTime.now());
+            recipeRepository.save(existingRecipe);
+
+        } else {
+            throw new ResourceNotFoundException("Recipe user id does not match with authorized user");
+        }
     }
 }

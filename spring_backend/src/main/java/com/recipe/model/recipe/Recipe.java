@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.recipe.model.users.User;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -37,8 +38,9 @@ public class Recipe {
     @Lob
     @Column
     private String name;
-
+    
     @Lob
+    @Column
     private String contents;
 
     @Lob
