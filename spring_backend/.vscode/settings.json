@@ -26,5 +26,8 @@
             "username": "postgres",
             "password": "postgres"
         }
+    ],
+    "cSpell.words": [
+        "Servlet"
     ]
 }
