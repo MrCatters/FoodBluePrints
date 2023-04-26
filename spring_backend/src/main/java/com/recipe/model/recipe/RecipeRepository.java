@@ -1,6 +1,9 @@
 package com.recipe.model.recipe;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.swing.text.html.Option;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -43,8 +46,20 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
     @Query(value = """
         SELECT t.* FROM recipes t\s 
-        WHERE t.user_id = :user_id \s
+        WHERE t.user_id = :user_id\s
         """,
         nativeQuery=true)
     List<Recipe> findAllRecipesByUserId(@Param("user_id") Integer userId);
+
+    @Query(value = """
+        SELECT case WHEN count(t)> 0\s
+        THEN true ELSE false END\s
+        FROM recipes t\s
+        WHERE t.id = :recipe_id\s
+        AND t.user_id = :user_id\s
+        """,
+        nativeQuery=true)
+    Boolean checkMatchingRecipe(@Param("recipe_id") Integer recipeId, @Param("user_id") Integer userId);
+
+    Optional<Recipe> findById(Integer id);
 }

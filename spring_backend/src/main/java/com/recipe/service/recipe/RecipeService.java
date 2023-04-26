@@ -4,14 +4,17 @@ import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.recipe.model.recipe.Recipe;
+import com.recipe.model.recipe.RecipeMapper;
 import com.recipe.model.recipe.RecipeRepository;
 import com.recipe.model.recipe.RecipeResponse;
 import com.recipe.model.recipe.RecipesRequest;
 import com.recipe.model.recipe.UserRecipePost;
 import com.recipe.model.users.User;
+import com.recipe.model.users.UserRepository;
 import com.recipe.service.auth.AuthenticationService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final AuthenticationService authenticationService;
+    private final RecipeMapper recipeMapper;
 
     public void postRecipe(UserRecipePost post, HttpServletRequest httpServletRequest) throws Exception{
         User existingUser = (authenticationService.getUser(httpServletRequest));
@@ -78,5 +82,10 @@ public class RecipeService {
         User existingUser = (authenticationService.getUser(httpServletRequest));
         List<Recipe> recipes = recipeRepository.findAllRecipesByUserId(existingUser.getId());
         return buildRecipeResponse(recipes);
+    }
+
+    public Object putRecipeEntity(Recipe updatedRecipe, HttpServletRequest httpServletRequest) {
+
+        UserRepository.
     }
 }
