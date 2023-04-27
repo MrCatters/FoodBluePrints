@@ -44,7 +44,7 @@ public class RecipeService {
     }
 
     public RecipeResponse getRecipesByName(RecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findAllByName(request.getSearchString());
+        List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
@@ -77,6 +77,11 @@ public class RecipeService {
     public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest) {
         User existingUser = authenticationService.getUser(httpServletRequest);
         List<Recipe> recipes = recipeRepository.findAllRecipesByUserId(existingUser.getId());
+        return buildRecipeResponse(recipes);
+    }
+
+    public RecipeResponse getRecentRecipes(RecipesRequest request) {
+        List<Recipe> recipes = recipeRepository.findTopRecipes(Integer.parseInt(request.getSearchString()));
         return buildRecipeResponse(recipes);
     }
 

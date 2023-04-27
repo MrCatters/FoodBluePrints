@@ -12,7 +12,11 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
         
-        List<Recipe> findAllByName(String name);
+        Optional<Recipe> findById(Integer id);
+        
+        void deleteById(Integer id);
+
+        List<Recipe> findByNameContaining(String name);
 
         @Query(value = """
                         SELECT t.* FROM recipes t\s
@@ -53,7 +57,10 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
                         """, nativeQuery = true)
         Boolean checkMatchingRecipe(@Param("recipe_id") Integer recipeId, @Param("user_id") Integer userId);
 
-        Optional<Recipe> findById(Integer id);
-
-        void deleteById(Integer id);
+        @Query(value = """
+        SELECT t.* FROM recipes t\s
+        ORDER BY date_created ASC\s
+        LIMIT :amount\s
+        """, nativeQuery = true)
+        List<Recipe> findTopRecipes(@Param("amount") int num);
 }

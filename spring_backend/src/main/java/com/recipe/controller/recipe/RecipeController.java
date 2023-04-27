@@ -78,6 +78,12 @@ public class RecipeController {
         return ResponseEntity.ok(service.getRecipeByAuth(httpServletRequest));
     }
 
+    @GetMapping("/recent_recipes")
+    public ResponseEntity<RecipeResponse> recentRecipes(
+        @RequestBody RecipesRequest request) throws Exception {
+    return ResponseEntity.ok(service.getRecentRecipes(request));
+}
+
     @PatchMapping("/patch_recipe")
     public ResponseEntity<String> patchRecipe(
         @RequestBody Recipe recipe,

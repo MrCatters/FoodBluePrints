@@ -34,8 +34,6 @@ public class Recipe {
     @GeneratedValue
     private Integer id;
 
-    @Lob
-    @Column
     private String name;
     
     @Lob
