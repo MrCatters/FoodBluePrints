@@ -55,7 +55,7 @@ public class RecipeController {
         return ResponseEntity.ok(service.getRecipesByUserLastName(request));
     }
 
-    @PostMapping("/user_email_recipes")
+    @GetMapping("/user_email_recipes")
     public ResponseEntity<RecipeResponse> recipesByUserEmail(
             @RequestBody RecipesRequest request) throws Exception {
         return ResponseEntity.ok(service.getRecipesByUserEmail(request));

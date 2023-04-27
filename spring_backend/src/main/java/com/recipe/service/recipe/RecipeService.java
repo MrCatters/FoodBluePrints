@@ -25,27 +25,26 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final AuthenticationService authenticationService;
 
-    public void postRecipe(UserRecipePost post, HttpServletRequest httpServletRequest) throws Exception{
+    public void postRecipe(UserRecipePost post, HttpServletRequest httpServletRequest) throws Exception {
         User existingUser = (authenticationService.getUser(httpServletRequest));
 
-
         final Recipe newRecipe = Recipe.builder()
-                                .dateCreated(LocalDateTime.now())
-                                .dateUpdated(LocalDateTime.now())
-                                .name(post.getName())
-                                .image(Base64
-                                        .getDecoder()
-                                        .decode(
-                                        post.getImage()
+                .dateCreated(LocalDateTime.now())
+                .dateUpdated(LocalDateTime.now())
+                .name(post.getName())
+                .image(Base64
+                        .getDecoder()
+                        .decode(
+                                post.getImage()
                                         .getBytes()))
-                                .user(existingUser)
-                                .contents(post.getContents())
-                                .build();
+                .user(existingUser)
+                .contents(post.getContents())
+                .build();
         recipeRepository.save(newRecipe);
     }
-    
+
     public RecipeResponse getRecipesByName(RecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
+        List<Recipe> recipes = recipeRepository.findAllByName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
@@ -64,33 +63,33 @@ public class RecipeService {
         return buildRecipeResponse(recipes);
     }
 
-
     public static RecipeResponse buildRecipeResponse(List<Recipe> recipes) {
         return RecipeResponse.builder()
-                            .recipes(recipes)
-                            .build();
+                .recipes(recipes)
+                .build();
     }
 
-    public void deleteRecipesById(Integer recipeId) throws IllegalArgumentException{
+    public void deleteRecipesById(Integer recipeId) throws IllegalArgumentException {
         recipeRepository.findById(recipeId).orElseThrow(() -> new IllegalArgumentException());
         recipeRepository.deleteById(recipeId);
     }
 
-    public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest){
+    public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest) {
         User existingUser = authenticationService.getUser(httpServletRequest);
         List<Recipe> recipes = recipeRepository.findAllRecipesByUserId(existingUser.getId());
         return buildRecipeResponse(recipes);
     }
 
-    public void patchRecipeEntity(Recipe updatedRecipe, HttpServletRequest httpServletRequest) throws ResourceNotFoundException{
+    public void patchRecipeEntity(Recipe updatedRecipe, HttpServletRequest httpServletRequest)
+            throws ResourceNotFoundException {
 
         Integer recipeId = updatedRecipe.getId();
         Integer userId = authenticationService.getUser(httpServletRequest).getId();
 
-        if (recipeRepository.checkMatchingRecipe(recipeId, userId)){
+        if (recipeRepository.checkMatchingRecipe(recipeId, userId)) {
             Recipe existingRecipe = recipeRepository.findById(recipeId)
-                                                    .orElseThrow(() -> new ResourceNotFoundException(
-                                                    "Recipe id does not match with an existing recipe"));
+                    .orElseThrow(() -> new ResourceNotFoundException(
+                            "Recipe id does not match with an existing recipe"));
             NullUtils.updateIfPresent(existingRecipe::setImage, updatedRecipe.getImage());
             NullUtils.updateIfPresent(existingRecipe::setName, updatedRecipe.getName());
             NullUtils.updateIfPresent(existingRecipe::setContents, updatedRecipe.getContents());
