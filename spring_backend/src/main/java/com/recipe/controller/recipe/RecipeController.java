@@ -15,7 +15,7 @@ import com.recipe.model.recipe.Recipe;
 import com.recipe.model.recipe.RecipeDeletionRequest;
 import com.recipe.model.recipe.RecipeResponse;
 import com.recipe.model.recipe.RecipesRequest;
-import com.recipe.model.recipe.UserRecipePost;
+import com.recipe.model.recipe.RecipeDTO;
 import com.recipe.service.recipe.RecipeService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class RecipeController {
 
     @PostMapping("/post_recipe")
     public ResponseEntity<HttpStatus> postRecipe(
-            @RequestBody UserRecipePost post,
+            @RequestBody RecipeDTO post,
             HttpServletRequest httpServletRequest) throws Exception {
         service.postRecipe(post, httpServletRequest);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);

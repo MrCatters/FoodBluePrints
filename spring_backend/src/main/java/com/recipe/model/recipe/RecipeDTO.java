@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRecipePost {
+public class RecipeDTO {
     private String name;
     private String contents;
     private String image;

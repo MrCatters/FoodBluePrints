@@ -11,7 +11,7 @@ import com.recipe.model.recipe.Recipe;
 import com.recipe.model.recipe.RecipeRepository;
 import com.recipe.model.recipe.RecipeResponse;
 import com.recipe.model.recipe.RecipesRequest;
-import com.recipe.model.recipe.UserRecipePost;
+import com.recipe.model.recipe.RecipeDTO;
 import com.recipe.model.users.User;
 import com.recipe.service.auth.AuthenticationService;
 import com.recipe.utils.NullUtils;
@@ -25,7 +25,7 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final AuthenticationService authenticationService;
 
-    public void postRecipe(UserRecipePost post, HttpServletRequest httpServletRequest) throws Exception {
+    public void postRecipe(RecipeDTO post, HttpServletRequest httpServletRequest) throws Exception {
         User existingUser = (authenticationService.getUser(httpServletRequest));
 
         final Recipe newRecipe = Recipe.builder()
