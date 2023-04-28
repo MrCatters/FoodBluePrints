@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0f013537-cef0-4f39-8183-f429a002c7cb",
+		"_postman_id": "a2c5f890-7453-4995-ba8c-addb2157bf36",
 		"name": "FoodBluePrints",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -232,11 +232,11 @@
 		{
 			"name": "Delete Recipe",
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"recipeId\": \"202\"\r\n}",
+					"raw": "{\r\n    \"recipeId\": \"3\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -406,6 +406,43 @@
 						"v1",
 						"recipe",
 						"auth_users_recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Recent Recipes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"searchString\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/recent_recipes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"recent_recipes"
 					]
 				}
 			},
