@@ -34,10 +34,12 @@ public class Recipe {
     @GeneratedValue
     private Integer id;
 
+    @Lob
+    @Column(columnDefinition = "text")
     private String name;
     
     @Lob
-    @Column
+    @Column(columnDefinition = "text")
     private String contents;
 
     @Lob
