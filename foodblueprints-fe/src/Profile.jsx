@@ -72,10 +72,10 @@ function Profile() {
           console.log(response);
           recipes_list = response.data.recipes;
           let temp = []
-          let id = 0;
+          
           recipes_list.forEach(recipe => {
-            temp.push(<RecipeCard key = {id} title ={recipe.name} author = {recipe.author} content ={recipe.contents}></RecipeCard>);
-            id++
+            temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.author} content ={recipe.contents}></RecipeCard>);
+            
         });    
             setItem(temp)
         }).catch(function (error) {

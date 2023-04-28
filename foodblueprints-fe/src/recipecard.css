@@ -1,4 +1,10 @@
 
+:root {
+    --blue-color: #279af1;
+    --white-color:#e6e6e6;
+    --black-color: #1D201F;
+    --lighter-gray: #4b4b4b;
+}
 .recipe-card {
     background-color: var(--black-color);
     width: 640px;
@@ -37,3 +43,22 @@
     border-radius: 10px;
 }
 
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer button {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 25px;
+    margin: 0;
+}
+
+.delete {
+    background-color: rgb(167, 28, 28);
+}
+
+.edit {
+    background-color: var(--lighter-gray);
+}
