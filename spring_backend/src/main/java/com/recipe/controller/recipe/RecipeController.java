@@ -5,6 +5,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,7 +65,7 @@ public class RecipeController {
         return ResponseEntity.ok(service.getRecipesByUserEmail(request));
     }
 
-    @PostMapping("/delete_recipe")
+    @DeleteMapping("/delete_recipe")
     public ResponseEntity<HttpStatus> removeRecipeById(
             @RequestBody RecipeDeletionRequest request) {
         try {
