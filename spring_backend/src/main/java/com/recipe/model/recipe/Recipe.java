@@ -34,8 +34,7 @@ public class Recipe {
     @GeneratedValue
     private Integer id;
 
-    @Lob
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "VARCHAR")
     private String name;
     
     @Lob

@@ -32,11 +32,7 @@ public class RecipeService {
                 .dateCreated(LocalDateTime.now())
                 .dateUpdated(LocalDateTime.now())
                 .name(post.getName())
-                .image(Base64
-                        .getDecoder()
-                        .decode(
-                                post.getImage()
-                                        .getBytes()))
+                .image(Base64.getDecoder().decode(post.getImage().getBytes()))
                 .user(existingUser)
                 .contents(post.getContents())
                 .build();
@@ -44,7 +40,7 @@ public class RecipeService {
     }
 
     public RecipeResponse getRecipesByName(RecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
+        List<Recipe> recipes = recipeRepository.findByName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 

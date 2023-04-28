@@ -1,5 +1,6 @@
 package com.recipe.controller.recipe;
 
+import java.util.logging.Logger;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,8 @@ public class RecipeController {
     @GetMapping("/name_recipes")
     public ResponseEntity<RecipeResponse> recipesByName(
             @RequestBody RecipesRequest request) throws Exception {
+            Logger logger = Logger.getLogger(RecipeController.class.getName());
+            logger.info("Returned value: " + request.getSearchString());
         return ResponseEntity.ok(service.getRecipesByName(request));
     }
 
@@ -80,19 +83,19 @@ public class RecipeController {
 
     @GetMapping("/recent_recipes")
     public ResponseEntity<RecipeResponse> recentRecipes(
-        @RequestBody RecipesRequest request) throws Exception {
-    return ResponseEntity.ok(service.getRecentRecipes(request));
-}
+            @RequestBody RecipesRequest request) throws Exception {
+        return ResponseEntity.ok(service.getRecentRecipes(request));
+    }
 
     @PatchMapping("/patch_recipe")
     public ResponseEntity<String> patchRecipe(
-        @RequestBody Recipe recipe,
-        HttpServletRequest httpServletRequest) throws ResourceNotFoundException {
-            try{
-                service.patchRecipeEntity(recipe, httpServletRequest);
-            } catch (ResourceNotFoundException e){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-            }
-            return ResponseEntity.status(HttpStatus.OK).build();
+            @RequestBody Recipe recipe,
+            HttpServletRequest httpServletRequest) throws ResourceNotFoundException {
+        try {
+            service.patchRecipeEntity(recipe, httpServletRequest);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
