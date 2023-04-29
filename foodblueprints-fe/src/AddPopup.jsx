@@ -31,15 +31,15 @@ function AddPopup(props) {
         .then(function(response) {
             console.log(response);
             props.setTrigger(false);
-            window.alert("recipe succesffuly submitted")
+            window.alert("recipe succesffuly submitted");
             setTitle("");
             setContent("");
             setImage("");
+            window.location.reload();
         })
         .catch(function(error) {
             console.log(error)
         });
-        window.location.reload();
     }
     return (props.trigger) ? ( 
         <div className="popup">
