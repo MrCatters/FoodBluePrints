@@ -10,6 +10,7 @@ function Profile() {
     let userEmail;
     let recipes_list;
     let temp = [];
+    const [name,setName] = useState();
     const [items, setItem] = useState([]);
     const cookiearray = document.cookie.split('=')
     const cookietemp = (cookiearray[1]);
@@ -55,7 +56,7 @@ function Profile() {
         })
         .then(function(response) {
             console.log(response)
-            userEmail = response.data.email
+            setName(response.data.firstName);
             console.log(userEmail)
         }).catch(function (error) {
             console.log(error)
@@ -90,7 +91,7 @@ function Profile() {
         <div className="profile">
             <Header />
             <div className="container">
-                <h1>Welcome back, Joe</h1>
+                <h1>Welcome back, {name}</h1>
                 <h2>Your Recipies</h2>
 
                 {items}

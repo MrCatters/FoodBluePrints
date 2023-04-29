@@ -21,13 +21,47 @@ function RecipeCard(props) {
         const cookietemp = (cookiearray[1]);
         const cookie = (cookietemp.split(';'))[0]   
 
-        axios.post("http://127.0.0.1:8080/api/v1/recipe/delete_recipe", {
-            "recipeId":id
-        }, {
+        let data = JSON.stringify({
+        "recipeId": `${id}`
+        });
+
+        let config = {
+        method: 'delete',
+        maxBodyLength: Infinity,
+        url: 'http://127.0.0.1:8080/api/v1/recipe/delete_recipe',
+        headers: { 
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${cookie}`
+        },
+        data : data
+        };
+
+        axios.request(config)
+        .then((response) => {
+        console.log(JSON.stringify(response.data));
+        window.location.reload();
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+
+        /*
+        e.preventDefault()
+        const cookiearray = document.cookie.split('=')
+        const cookietemp = (cookiearray[1]);
+        const cookie = (cookietemp.split(';'))[0]   
+
+        axios.delete("http://127.0.0.1:8080/api/v1/recipe/delete_recipe", {
+           
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${cookie}`
             }
+        }, {
+            data: {
+                "recipeId":id    
+            }
+           
         })
         .then(function (response) {
             window.location.reload();
@@ -35,6 +69,7 @@ function RecipeCard(props) {
         .then(function (error) {
             console.log(error);
         });
+        */
     }
     return (
         <div className="recipe-card">

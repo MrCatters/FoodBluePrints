@@ -21,16 +21,24 @@ function Login(props){
         })
         .then(function (response) {
             console.log(response)
-            signOut()
-            signIn({
+            
+            if (signIn(
+                {
                 token: response.data.access_token,
                 expiresIn: 100,
                 tokenType: "Bearer",
                 authState: { email: u_email},
                 refreshToken: response.data.refresh_token
-            });
+                }
+            )) {
+                setTimeout(() => {
+                    navigate("/home")
+                }, 100)    
+            } else {
 
-            navigate("/home")
+            };
+
+            
             
         })
         .catch(function(error) {
