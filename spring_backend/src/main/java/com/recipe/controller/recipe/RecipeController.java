@@ -39,7 +39,7 @@ public class RecipeController {
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/name_recipes")
+    @PostMapping("/name_recipes")
     public ResponseEntity<RecipeResponse> recipesByName(
             @RequestBody RecipesRequest request) throws Exception {
             Logger logger = Logger.getLogger(RecipeController.class.getName());
@@ -47,19 +47,19 @@ public class RecipeController {
         return ResponseEntity.ok(service.getRecipesByName(request));
     }
 
-    @GetMapping("/user_first_name_recipes")
+    @PostMapping("/user_first_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByFirstUserName(
             @RequestBody RecipesRequest request) throws Exception {
         return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
     }
 
-    @GetMapping("/user_last_name_recipes")
+    @PostMapping("/user_last_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByLastUserName(
             @RequestBody RecipesRequest request) throws Exception {
         return ResponseEntity.ok(service.getRecipesByUserLastName(request));
     }
 
-    @GetMapping("/user_email_recipes")
+    @PostMapping("/user_email_recipes")
     public ResponseEntity<RecipeResponse> recipesByUserEmail(
             @RequestBody RecipesRequest request) throws Exception {
         return ResponseEntity.ok(service.getRecipesByUserEmail(request));
@@ -82,7 +82,7 @@ public class RecipeController {
         return ResponseEntity.ok(service.getRecipeByAuth(httpServletRequest));
     }
 
-    @GetMapping("/recent_recipes")
+    @PostMapping("/recent_recipes")
     public ResponseEntity<RecipeResponse> recentRecipes(
             @RequestBody RecipesRequest request) throws Exception {
         return ResponseEntity.ok(service.getRecentRecipes(request));
