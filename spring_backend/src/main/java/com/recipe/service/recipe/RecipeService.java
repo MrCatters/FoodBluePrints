@@ -40,7 +40,7 @@ public class RecipeService {
     }
 
     public RecipeResponse getRecipesByName(RecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findByName(request.getSearchString());
+        List<Recipe> recipes = recipeRepository.findByNameContaining(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 

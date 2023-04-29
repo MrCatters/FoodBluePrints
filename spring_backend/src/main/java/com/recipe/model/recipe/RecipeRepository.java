@@ -16,7 +16,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 
         void deleteById(Integer id);
 
-        List<Recipe> findByName(String name);
+        List<Recipe> findByNameContaining(String name);
 
         @Query(value = """
                         SELECT t.* FROM recipes t\s
