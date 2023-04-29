@@ -236,7 +236,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"recipeId\": \"3\"\r\n}",
+					"raw": "{\r\n    \"recipeId\": \"53\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -265,11 +265,8 @@
 		},
 		{
 			"name": "Find Recipes By User First Name",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -302,11 +299,8 @@
 		},
 		{
 			"name": "Find Recipes By User Email",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -339,15 +333,12 @@
 		},
 		{
 			"name": "Find Recipes By Name",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"searchString\" : \"pie\"\r\n}",
+					"raw": "{\r\n    \"searchString\" : \"rraspberry\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -413,11 +404,8 @@
 		},
 		{
 			"name": "Get Most Recent Recipes",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -455,7 +443,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 52,\r\n    \"name\": \"red pie\",\r\n    \"contents\" : \"yucky\"\r\n}",
+					"raw": "// Everything is optional except for id\r\n{\r\n    \"id\": 103,\r\n    \"name\": \"red pie\",\r\n    \"contents\" : \"yucky\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
