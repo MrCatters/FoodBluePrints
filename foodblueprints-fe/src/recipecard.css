@@ -16,7 +16,7 @@
     border-radius: 10px;
 }
 
-.recipe-card * {
+.recipe-card > * {
    
     color: var(--white-color);
     margin: 1rem;
@@ -29,11 +29,12 @@
     display: flex;
     background-color: var(--lighter-gray);
     justify-content: space-between;
-    border-radius: 10px;
-
-    
+    border-radius: 10px;    
 }
 
+.header-container *{
+    margin: 1rem;
+}
 
 
 .content {
@@ -61,4 +62,8 @@
 
 .edit {
     background-color: var(--lighter-gray);
+}
+
+.editpop{
+    margin: 0;
 }

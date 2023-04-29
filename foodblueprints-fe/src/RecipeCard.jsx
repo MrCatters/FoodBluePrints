@@ -1,33 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import "./recipecard.css";
 import axios from "axios";
+import EditPopup from "./EditPopup.jsx"
 
-function editHandler(e) {
-    e.preventDefault()
-}
 
-function deleteHandler(e,id) {
-    e.preventDefault()
-    const cookiearray = document.cookie.split('=')
-    const cookietemp = (cookiearray[1]);
-    const cookie = (cookietemp.split(';'))[0]   
-    axios.delete("http://127.0.0.1:8080/api/v1/recipe/delete_recipe", {
-        "id":id
-    }, {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${cookie}`
-        }
-    })
-    .then(function (response) {
-        console.log(response);
-    })
-    .then(function (error) {
-        console.log(error);
-    });
-}
 
 function RecipeCard(props) {
+    const [popup, setPopup] = useState();
+    const [globalId, setGlobalId] = useState();
+
+    function editHandler(e) {
+        e.preventDefault()
+        setPopup(true)
+        
+    }
+
+    function deleteHandler(e,id) {
+        e.preventDefault()
+        const cookiearray = document.cookie.split('=')
+        const cookietemp = (cookiearray[1]);
+        const cookie = (cookietemp.split(';'))[0]   
+
+        axios.post("http://127.0.0.1:8080/api/v1/recipe/delete_recipe", {
+            "recipeId":id
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${cookie}`
+            }
+        })
+        .then(function (response) {
+            window.location.reload();
+        })
+        .then(function (error) {
+            console.log(error);
+        });
+    }
     return (
         <div className="recipe-card">
             <div className="header-container">
@@ -38,10 +46,12 @@ function RecipeCard(props) {
                 {props.content}
             </p>
             <div className="footer">
-                <button onClick = { editHandler }  className="edit">Edit</button>
+                <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
             </div>
-            
+            <EditPopup className="editpop" trigger = { popup } setTrigger = {setPopup} id = {props.id} parentProps = {props}>
+
+            </EditPopup>
         </div>  
     );
 }

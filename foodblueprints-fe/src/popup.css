@@ -80,6 +80,8 @@ li:hover {
     width: 100%;
     display: flex;
     justify-content: end;
+    margin: 0;
+    padding: 0;
 }
 
 .closeContainer button {
@@ -100,5 +102,3 @@ li:hover {
     background-color: var(--blue-color);
     color: var(--white-color);
 }
-
-

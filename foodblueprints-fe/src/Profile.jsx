@@ -74,7 +74,7 @@ function Profile() {
           let temp = []
           
           recipes_list.forEach(recipe => {
-            temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.author} content ={recipe.contents}></RecipeCard>);
+            temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.author} content ={recipe.contents} img = {recipe.img}></RecipeCard>);
             
         });    
             setItem(temp)
