@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a2c5f890-7453-4995-ba8c-addb2157bf36",
+		"_postman_id": "4d75f11e-7579-466f-9b03-7d5a98bdc9c1",
 		"name": "FoodBluePrints",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -236,7 +236,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"recipeId\": \"53\"\r\n}",
+					"raw": "{\r\n    \"recipeId\": \"3\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -338,7 +338,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"searchString\" : \"rraspberry\"\r\n}",
+					"raw": "{\r\n    \"searchString\" : \"shrimp\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -409,7 +409,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"searchString\": 10\r\n}",
+					"raw": "{\r\n    \"searchString\": 3\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -431,6 +431,43 @@
 						"v1",
 						"recipe",
 						"recent_recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Favorited Recipes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/favorited_recipes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"favorited_recipes"
 					]
 				}
 			},
@@ -465,6 +502,40 @@
 						"v1",
 						"recipe",
 						"patch_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Favorite Recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"searchString\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/post_favorite_recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"post_favorite_recipe"
 					]
 				}
 			},
