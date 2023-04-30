@@ -45,7 +45,7 @@ public class RecipeService {
     }
 
     public RecipeResponse getRecipesByName(RecipesRequest request) {
-        List<Recipe> recipes = recipeRepository.findFirst10ByNameContaining(request.getSearchString());
+        List<Recipe> recipes = recipeRepository.findFirst10ByNameContainingIgnoreCase(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
@@ -116,7 +116,7 @@ public class RecipeService {
 
     public void addFavoriteRecipe(
             HttpServletRequest httpServletRequest,
-            RecipesRequest recipesRequest) {
+            RecipesRequest recipesRequest) throws ResourceNotFoundException, IllegalArgumentException{
         User existingUser = authenticationService.getUser(httpServletRequest);
         Integer recipeId = Integer.parseInt(recipesRequest.getSearchString());
         Recipe existingRecipe = recipeRepository.findById(recipeId)
