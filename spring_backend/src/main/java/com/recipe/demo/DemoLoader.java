@@ -48,7 +48,7 @@ public class DemoLoader implements CommandLineRunner {
             6. Add the cooked pasta to the skillet and toss until evenly coated with the sauce.
             7. Season with salt and pepper to taste.
             8. Serve hot and enjoy!
-        """,
+            """,
         """
             This delicious and easy-to-make banana bread is perfect for breakfast, snack, or dessert.
 
@@ -73,7 +73,7 @@ public class DemoLoader implements CommandLineRunner {
             7. Pour the batter into the prepared loaf pan and bake for 50-60 minutes, or until a toothpick inserted into the center comes out clean.
             8. Allow the banana bread to cool in the pan for 10 minutes before removing it and placing it on a wire rack to cool completely.
             9. Slice and serve, and enjoy your delicious classic banana bread!
-        """,
+            """,
         """
             This salad is a favorite for a reason. It's simple, yet satisfying and delicious!
             
@@ -96,7 +96,7 @@ public class DemoLoader implements CommandLineRunner {
             4. Sprinkle the grated Parmesan cheese on top of the salad and serve.
             
             Enjoy your delicious classic Caesar salad!
-        """,
+            """,
         """
             ## Ingredients
             - 2 1/4 cups all-purpose flour
@@ -120,7 +120,7 @@ public class DemoLoader implements CommandLineRunner {
             8. Bake for 10-12 minutes or until the edges are golden brown.
             9. Let the cookies cool on the baking sheets for 5 minutes before transferring them to wire racks to cool completely.
             10. Serve and enjoy!
-        """,
+            """,
         """
             ## Ingredients
             - 1 lb. boneless, skinless chicken breasts, cut into bite-sized pieces
