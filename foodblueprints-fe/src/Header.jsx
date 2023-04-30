@@ -10,8 +10,8 @@ function Header() {
         <div>
             <div className="Header">
                 <h3>FoodBlueprints</h3>
+                <input type='text' className='searchbar' defaultValue='Search for a recipe...'/>
                 <ul className='nav-items'>
-                    <a>Search</a>
                     <a onClick={e => setPopup(true)}>Add a recipe</a>
                     <Link to = "/profile" >profile</Link>
                 </ul>

@@ -25,7 +25,7 @@ function Login(props){
             if (signIn(
                 {
                 token: response.data.access_token,
-                expiresIn: 100,
+                expiresIn: 3600,
                 tokenType: "Bearer",
                 authState: { email: u_email},
                 refreshToken: response.data.refresh_token

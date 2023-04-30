@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./recipecard.css";
 import axios from "axios";
-import EditPopup from "./EditPopup.jsx"
+import EditPopup from "./EditPopup.jsx";
+import ReactMarkdown from "react-markdown";
 
 
 
@@ -73,13 +74,16 @@ function RecipeCard(props) {
     }
     return (
         <div className="recipe-card">
-            <div className="header-container">
-                <h3 className="title">{props.title}</h3>
-                <h4 className="author">{props.author}</h4>
+            <div className="top-container">
+                <div className="header-container">
+                    <h3 className="title">{props.title}</h3>
+                    <h4 className="author">{props.author}</h4>
+                </div>
+                <p className="content">
+                    <ReactMarkdown children= {props.content}></ReactMarkdown>
+                </p>    
             </div>
-            <p className="content">
-                {props.content}
-            </p>
+           
             <div className="footer">
                 <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
