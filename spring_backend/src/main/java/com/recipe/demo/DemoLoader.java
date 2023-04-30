@@ -1,17 +1,12 @@
 package com.recipe.demo;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
 
 import com.recipe.model.recipe.Recipe;
 import com.recipe.model.recipe.RecipeRepository;
@@ -25,7 +20,6 @@ public class DemoLoader implements CommandLineRunner {
     private RecipeRepository recipeRepository;
     @Autowired
     private UserRepository userRepository;
-    private Logger logger = Logger.getLogger(DemoLoader.class.getName());
 
     @Override
     public void run(String... args) throws Exception{
