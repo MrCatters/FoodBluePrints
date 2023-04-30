@@ -10,13 +10,12 @@ function handleSearch() {
 
 function Header(props) {
     const [popup, setPopup] = useState(false);
-    const [search, setSearch] = useState();
     const [changed,setChanged] = useState(false);
     const navigate = useNavigate();
     return (props.searchActive) ? (
         <div>
             <div className="Header">
-                <h3>FoodBlueprints</h3>
+                <Link to = "/home" ><h3>FoodBlueprints</h3></Link>
                 <input type='text' className='searchbar' placeholder='Search for a recipe...' onChange={e => props.setSearchValue(e.target.value)}/>
                 <ul className='nav-items'>
                     <a onClick={e => setPopup(true)}>Add a recipe</a>
@@ -27,8 +26,7 @@ function Header(props) {
         </div>
     ) :<div>
     <div className="Header">
-        <h3>FoodBlueprints</h3>
-        
+         <Link to = "/home" ><h3>FoodBlueprints</h3></Link>
         <ul className='nav-items'>
             <a onClick={e => setPopup(true)}>Add a recipe</a>
             <Link to = "/profile" >profile</Link>

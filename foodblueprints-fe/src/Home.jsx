@@ -114,10 +114,14 @@ function Home(){
 
     return (
         <div className="outer-container">
-          <Header searchActive = {true} changed = {changed} setChanged = {setChanged} searchValue = {searchValue} setSearchValue = {setSearchValue}/>
+          <Header searchActive = {false} changed = {changed} setChanged = {setChanged} searchValue = {searchValue} setSearchValue = {setSearchValue}/>
           <div className="Home">
-            <h1>Welcome to FoodBlueprints</h1>
-            <h3>Create and share your favorite recipes</h3>
+            <div className="home-topcontent">
+               <h1>Welcome to FoodBlueprints</h1>
+              <h3>Create and share your favorite recipes</h3>
+              <input type='text' className='searchbar' placeholder='Search for a recipe...' onChange={e => setSearchValue(e.target.value)}/>
+            </div>
+           
             <div className="recent-recipes-container">
                 {recipes}
             </div>
