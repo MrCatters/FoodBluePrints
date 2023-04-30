@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.List;
 
-import org.apache.logging.log4j.Logger;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,6 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
     private final AuthenticationService authenticationService;
-    private Logger logger = org.apache.logging.log4j.LogManager.getLogger(RecipeService.class);
 
     public void postRecipe(RecipeDTO post, HttpServletRequest httpServletRequest) throws Exception {
         User existingUser = (authenticationService.getUser(httpServletRequest));
