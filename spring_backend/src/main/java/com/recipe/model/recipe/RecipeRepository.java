@@ -58,9 +58,17 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
         Boolean checkMatchingRecipe(@Param("recipe_id") Integer recipeId, @Param("user_id") Integer userId);
 
         @Query(value = """
-                        SELECT t.* FROM recipes t\s
+                        SELECT r.* FROM recipes r\s
                         ORDER BY date_created ASC\s
                         LIMIT :amount\s
                         """, nativeQuery = true)
         List<Recipe> findTopRecipes(@Param("amount") int num);
+
+        @Query(value = """
+                SELECT r.* FROM recipes r\s
+                INNER JOIN _user_favorited_recipes fr 
+                        ON fr.favorited_recipes_id = r.id\s
+                        WHERE fr.user_id = :user_id\s
+                """, nativeQuery = true)
+        List<Recipe> findAllFavoritedRecipesByUserId(@Param("user_id") Integer userId);
 }

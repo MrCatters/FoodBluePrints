@@ -1,10 +1,12 @@
 package com.recipe.model.users;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +20,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.recipe.model.recipe.Recipe;
 
 @Data
 @Builder
@@ -33,10 +36,16 @@ public class User implements UserDetails {
   private Integer id;
   private String firstName;
   private String lastName;
+
   @JsonIgnore
   private String email;
+
   @JsonIgnore
   private String password;
+
+  @ElementCollection()
+  @JsonIgnore
+  private List<Recipe> favoritedRecipes;
 
   @Enumerated(EnumType.STRING)
   @JsonIgnore
@@ -83,4 +92,5 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
 }

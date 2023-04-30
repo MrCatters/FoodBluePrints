@@ -42,8 +42,8 @@ public class RecipeController {
     @PostMapping("/name_recipes")
     public ResponseEntity<RecipeResponse> recipesByName(
             @RequestBody RecipesRequest request) throws Exception {
-            Logger logger = Logger.getLogger(RecipeController.class.getName());
-            logger.info("Returned value: " + request.getSearchString());
+        Logger logger = Logger.getLogger(RecipeController.class.getName());
+        logger.info("Returned value: " + request.getSearchString());
         return ResponseEntity.ok(service.getRecipesByName(request));
     }
 
@@ -70,7 +70,7 @@ public class RecipeController {
             @RequestBody RecipeDeletionRequest request) {
         try {
             service.deleteRecipesById(request.getRecipeId());
-        } catch (Exception e) {
+        } catch (ResourceNotFoundException e) {
             return ResponseEntity.ok(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
@@ -99,4 +99,23 @@ public class RecipeController {
         }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @PostMapping("/post_favorite_recipe")
+    public ResponseEntity<String> addFavoriteRecipe(
+            @RequestBody RecipesRequest recipesRequest,
+            HttpServletRequest httpServletRequest) {
+        try {
+            service.addFavoriteRecipe(httpServletRequest, recipesRequest);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("/favorited_recipes")
+    public ResponseEntity<RecipeResponse> getUserFavoritedRecipes(
+            HttpServletRequest httpServletRequest) {
+        return ResponseEntity.ok(service.getUserFavoritedRecipes(httpServletRequest));
+    }
+
 }
