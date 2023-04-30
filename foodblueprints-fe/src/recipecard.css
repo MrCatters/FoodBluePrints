@@ -69,3 +69,7 @@
 .editpop{
     margin: 0;
 }
+
+.recipe-card img {
+    width: 100%;
+}

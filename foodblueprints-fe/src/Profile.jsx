@@ -75,6 +75,7 @@ function Profile() {
           let temp = []
           
           recipes_list.forEach(recipe => {
+            
             temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.author} content ={recipe.contents} img = {recipe.image}></RecipeCard>);
             
         });    
@@ -89,7 +90,7 @@ function Profile() {
     return (
         
         <div className="profile">
-            <Header />
+            <Header searchActive = {false}/>
             <div className="container">
                 <h1>Welcome back, {name}</h1>
                 <h2>Your Recipies</h2>

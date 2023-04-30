@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 function RecipeCard(props) {
     const [popup, setPopup] = useState();
     const [globalId, setGlobalId] = useState();
+    const converted = `data:image/png;base64, ${props.img}`
 
     function editHandler(e) {
         e.preventDefault()
@@ -80,6 +81,7 @@ function RecipeCard(props) {
                     <h4 className="author">{props.author}</h4>
                 </div>
                 <p className="content">
+                    <img src = {converted} alt = "img"></img>
                     <ReactMarkdown children= {props.content}></ReactMarkdown>
                 </p>    
             </div>

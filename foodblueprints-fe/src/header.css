@@ -3,15 +3,18 @@
     --white-color:#e6e6e6;
     --black-color: #1D201F;
 }
-
+ html {
+    width: 100%;
+ }
 .Header {
     background-color: var(--black-color);
     padding: 1rem;
-    
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    width: 99vw;
+    width: 100%;
     justify-content: space-between;
+    margin: 0;
 }
 
 .Header * {
