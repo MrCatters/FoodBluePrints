@@ -48,7 +48,7 @@ function AddPopup(props) {
         .then(function(response) {
             console.log(response);
             props.setTrigger(false);
-            window.alert("recipe succesffuly submitted");
+            window.alert("Recipe successfully submitted");
             setTitle("");
             setContent("");
             setImage("");

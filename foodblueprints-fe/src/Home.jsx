@@ -8,7 +8,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import "./home.css"
 
-function Home(){
+function Home(props){
 
     const [recipes, setRecipes] = useState();
     const [searchValue, setSearchValue] = useState();
@@ -67,7 +67,7 @@ function Home(){
           .then((response) => {
             response.data.recipes.forEach(recipe => {
                 console.log(recipe)
-                temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image} favorites = {favoriteIDs}></RecipeCard>);
+                temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image} favorites = {favoriteIDs} pingd = {ping} setPingd = {setPing}></RecipeCard>);
             })
             setRecipes(temp)
           })
@@ -108,7 +108,7 @@ function Home(){
         setRecipes([]);
         console.log(JSON.stringify(response.data));
         response.data.recipes.forEach(recipe => {
-          temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image} favorites = {favoriteIDs}></RecipeCard>);
+          temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image} pingd = {ping} setPingd = {setPing} favorites = {favoriteIDs}></RecipeCard>);
       })
       setRecipes(temp)
       

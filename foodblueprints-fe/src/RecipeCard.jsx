@@ -4,8 +4,9 @@ import axios from "axios";
 import EditPopup from "./EditPopup.jsx";
 import ReactMarkdown from "react-markdown";
 import DetailedPopup from "./DetailedPopup.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import {faHeart as farHeart} from '@fortawesome/free-regular-svg-icons';
 
 
 
@@ -41,15 +42,19 @@ function RecipeCard(props) {
           
           axios.request(config)
           .then((response) => {
+            
+            console.log(props.pingd)
             console.log(JSON.stringify(response.data));
           })
           .catch((error) => {
             console.log(error);
           });
           window.location.reload();
+         
+         
     }
 
-    function unfavoriteHanlder () {
+    function unfavoriteHanlder() {
         let data = JSON.stringify({
             "searchString": props.id
           });
@@ -73,6 +78,8 @@ function RecipeCard(props) {
             console.log(error);
           });
           window.location.reload();
+          
+         
           
     }
     useEffect((e) => {
@@ -119,32 +126,31 @@ function RecipeCard(props) {
         console.log(error);
         });
     }
+
+
     return (isFavorite) ?(
         <div className="recipe-card">
             <div className="top-container">
                 <div className="header-container">
-                    <div className="meta-container">
                         <h3 className="title">{props.title}</h3>
-                        <FontAwesomeIcon icon={faHeart} />  
-                    </div>
-                    
-                    <h4 className="author">{props.author}</h4>
+                        <FontAwesomeIcon onClick={ e => {unfavoriteHanlder()}} icon={faHeart} />
                 </div>
                 <p className="content">
                     <img src = {converted} alt = "img"></img>
-                    <ReactMarkdown children= {props.content}></ReactMarkdown>
+                    
                 </p>    
             </div>
            
             <div className="footer">
                 <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
-                <button onClick={ e => {unfavoriteHanlder()}}>Unfavorite</button>
+                
+                <button onClick={e => {setDetailActive(true)}} className="expand">View</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
             </div>
             
             <EditPopup className="editpop" trigger = { popup } setTrigger = {setPopup} id = {props.id} parentProps = {props}>
             </EditPopup>
-            <DetailedPopup className = "detailpop" trigger2 = { detailActive } setTrigger2 = {setDetailActive} parentProps = {props}>
+            <DetailedPopup className = "detailpop" trigger2 = { detailActive } setTrigger2 = {setDetailActive} parentProps = {props} converted = {converted}>
             </DetailedPopup>
         </div>  
     ) : 
@@ -152,23 +158,24 @@ function RecipeCard(props) {
             <div className="top-container">
                 <div className="header-container">
                     <h3 className="title">{props.title}</h3>
-                    <h4 className="author">{props.author}</h4>
+                    <FontAwesomeIcon onClick={ e => {favoriteHandler()}} icon={farHeart} />
                 </div>
                 <p className="content">
                     <img src = {converted} alt = "img"></img>
-                    <ReactMarkdown children= {props.content}></ReactMarkdown>
+                    
                 </p>    
             </div>
            
             <div className="footer">
                 <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
-                <button onClick={ e => {favoriteHandler()}}>Favorite</button>
+                
+                <button onClick={e => {setDetailActive(true)}} className="expand">View</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
             </div>
             
             <EditPopup className="editpop" trigger = { popup } setTrigger = {setPopup} id = {props.id} parentProps = {props}>
             </EditPopup>
-            <DetailedPopup className = "detailpop" trigger2 = { detailActive } setTrigger2 = {setDetailActive} parentProps = {props}>
+            <DetailedPopup className = "detailpop" trigger2 = { detailActive } setTrigger2 = {setDetailActive} parentProps = {props} converted = {converted}>
             </DetailedPopup>
         </div>  ;
 }

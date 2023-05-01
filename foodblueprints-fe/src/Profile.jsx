@@ -130,7 +130,10 @@ function Profile() {
                     <button onClick={e => setSwitcher(false)}>Your Recipes</button>
                     <button onClick={e => setSwitcher(true)}>Favorite Recipes</button>
                 </div>
-                {items}
+                <div className="grid-container">
+                 {items}   
+                </div>
+                
             </div>
            
         </div>

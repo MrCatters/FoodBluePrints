@@ -14,10 +14,12 @@
     padding: 0.5rem;
 }
 
-.recent-recipes-container {    
+.recent-recipes-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  
+
  
  
 

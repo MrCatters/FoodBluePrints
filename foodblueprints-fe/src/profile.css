@@ -45,3 +45,11 @@
 .options button:hover {
     transform: scale(1.10);
 }
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
