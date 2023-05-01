@@ -24,8 +24,11 @@ function Profile() {
             setPing(true);
         },700)
     },[])
+
     useEffect(() => {
-        if (switcher == false) {
+        
+        console.log(switcher)
+        if (switcher === false) {
 
         axios.get("http://127.0.0.1:8080/api/v1/user/user_information",{
             headers: {
@@ -91,11 +94,12 @@ function Profile() {
             }
         })
         .then(function (response) {
+            setItem([])
             console.log('response for favorite recipies');
             console.log(response);
             console.log('------------------');
             if (response.data.recipes.length > 0) {
-                setItem([])
+                
                 recipes_list = response.data.recipes;
                 let temp = []
                 response.data.recipes.forEach(recipe => {

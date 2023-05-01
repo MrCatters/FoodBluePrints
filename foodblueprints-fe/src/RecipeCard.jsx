@@ -4,6 +4,8 @@ import axios from "axios";
 import EditPopup from "./EditPopup.jsx";
 import ReactMarkdown from "react-markdown";
 import DetailedPopup from "./DetailedPopup.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faHeart } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -70,6 +72,7 @@ function RecipeCard(props) {
           .catch((error) => {
             console.log(error);
           });
+          window.location.reload();
           
     }
     useEffect((e) => {
@@ -120,8 +123,11 @@ function RecipeCard(props) {
         <div className="recipe-card">
             <div className="top-container">
                 <div className="header-container">
-                    <h3 className="title">{props.title}</h3>
-                    <h4>FAV</h4>
+                    <div className="meta-container">
+                        <h3 className="title">{props.title}</h3>
+                        <FontAwesomeIcon icon={faHeart} />  
+                    </div>
+                    
                     <h4 className="author">{props.author}</h4>
                 </div>
                 <p className="content">
@@ -132,7 +138,6 @@ function RecipeCard(props) {
            
             <div className="footer">
                 <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
-                <button onClick={e => {setDetailActive(true)}} >View More</button>
                 <button onClick={ e => {unfavoriteHanlder()}}>Unfavorite</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
             </div>
@@ -157,7 +162,6 @@ function RecipeCard(props) {
            
             <div className="footer">
                 <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
-                <button onClick={e => {setDetailActive(true)}} >View More</button>
                 <button onClick={ e => {favoriteHandler()}}>Favorite</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
             </div>

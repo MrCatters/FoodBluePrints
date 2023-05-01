@@ -33,6 +33,7 @@
 }
 .header-container {
     display: flex;
+    align-items: center;
     background-color: var(--lighter-gray);
     justify-content: space-between;
     border-radius: 10px;    
@@ -76,4 +77,15 @@
 
 .recipe-card img {
     width: 100%;
+}
+
+.meta-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meta-container * {
+    padding: 0;
+    margin: 5px;
 }
