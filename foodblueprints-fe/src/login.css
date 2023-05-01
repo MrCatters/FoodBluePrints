@@ -8,15 +8,22 @@
 }
 .Login {
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    align-items: center;
-   margin-top: 3rem;
+   justify-content: center;
+
+   background-image: url("./img/lensblur6vignette11.jpg");
+   height: 100vh;
+}
+
+.Login * {
+    color: var(--white-color);
 }
 .login-form-container {
     max-width: 80ch;
     display: flex;
     flex-direction: column;
-    background-color: var(--light-blue);
+    background-color: var(--black-color);
     padding: 1rem;
     border-radius: 15px;
     align-items: center;
@@ -27,18 +34,19 @@
     flex-direction: column;
     align-items: center;
 }
+
 .Login input {
     margin: 1rem;
     padding: 1rem;
     border-radius: 10px;
     border-style: none;
-    background-color: var(--lesslight-blue);
+    background-color: var(--lighter-gray);
     color: #1D201F;
     
 }
 
 .Login input[type=submit] {
-    background-color: black;
+    background-color:var(--blue-color);
     color: var(--white-color);
     border-radius: 10px;
     width: 60%;
@@ -55,7 +63,7 @@
 
 }
 .Login h1 {
-    margin: 2rem;
+    margin: 1rem;
 }
 .Login h2 {
     margin: 2rem;
@@ -63,7 +71,7 @@
 
 .Login a {
     text-decoration: none;
-    color: var(--black-color);
+    color: var(--white-color);
 }
 
 .Login a:hover {

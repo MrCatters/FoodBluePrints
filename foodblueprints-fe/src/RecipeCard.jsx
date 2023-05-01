@@ -47,7 +47,31 @@ function RecipeCard(props) {
           window.location.reload();
     }
 
-    
+    function unfavoriteHanlder () {
+        let data = JSON.stringify({
+            "searchString": props.id
+          });
+          
+          let config = {
+            method: 'delete',
+            maxBodyLength: Infinity,
+            url: 'http://127.0.0.1:8080/api/v1/recipe/delete_favorite_recipe',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${cookie}`
+            },
+            data : data
+          };
+          
+          axios.request(config)
+          .then((response) => {
+            console.log(JSON.stringify(response.data));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+          
+    }
     useEffect((e) => {
         props.favorites.forEach(idt => {
             if (props.id === idt) {
@@ -109,7 +133,7 @@ function RecipeCard(props) {
             <div className="footer">
                 <button onClick = { (e) => editHandler(e) }  className="edit">Edit</button>
                 <button onClick={e => {setDetailActive(true)}} >View More</button>
-                <button onClick={ e => {favoriteHandler()}}>Unfavorite</button>
+                <button onClick={ e => {unfavoriteHanlder()}}>Unfavorite</button>
                 <button onClick={ (e) => {deleteHandler(e,props.id)} } className="delete">Delete</button>
             </div>
             

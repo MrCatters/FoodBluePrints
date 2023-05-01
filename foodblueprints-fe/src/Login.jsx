@@ -52,9 +52,10 @@ function Login(props){
     }
     return (
         <div className="Login">
+           
+            <div className="login-form-container">
             <h1>FoodBlueprints</h1>
             <h2>Welcome, please log in or sign up</h2>
-            <div className="login-form-container">
                 <form onSubmit = {handleSubmit} className="login-form">
                     <input type = "text" required onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter username.."/>
                     <input type = "password" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>

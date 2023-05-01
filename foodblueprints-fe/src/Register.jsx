@@ -48,9 +48,10 @@ function Register() {
     }
     return (
         <div className="Register">
+            
+            <div className="register-form-container">
             <h1>FoodBlueprints</h1>
             <h2>Please sign up for an account</h2>
-            <div className="register-form-container">
                 <form onSubmit = {handleSubmit} className="login-form">
                     <input type = "text" required  onChange = {(e) => setF_name(e.target.value)}id = "f_name"  placeholder="first name.."/>
                     <input type = "text" required  onChange = {(e) => setL_name(e.target.value)}id = "l_name"  placeholder="last name.."/>   
