@@ -1,5 +1,5 @@
 :root {
-    --blue-color: #279af1;
+    --blue-color: #0d5ca7;
     --white-color:#e6e6e6;
     --black-color: #1D201F;
     --light-blue: rgb(230, 241, 253);
@@ -50,16 +50,18 @@
     color: var(--white-color);
     border-radius: 10px;
     width: 60%;
-    font-weight: bold;
+    font-weight: normal;
+    transition: all 100ms ease-in-out;
 
 }
 
 .Login input[type=submit]:hover {
     background-color: var(--blue-color);
-    color: var(--black-color);
+    font-weight: bold;
     border-radius: 10px;
     width: 60%;
     font-weight: bold;
+    transform: scale(1.125);
 
 }
 .Login h1 {

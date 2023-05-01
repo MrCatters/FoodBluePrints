@@ -1,5 +1,5 @@
 :root {
-    --blue-color: #279af1;
+    --blue-color: #0d5ca7;
     --white-color:#e6e6e6;
     --black-color: #1D201F;
 }
@@ -35,12 +35,14 @@ ul * {
 
 .Header a {
     text-decoration: none;
+    transition: all 100ms ease-in-out;
 }
 
 .Header a:hover {
     text-decoration: none;
     cursor:pointer;
     color: var(--blue-color);
+    transform: scale(1.2);
 }
 
 .searchbar {
@@ -56,6 +58,6 @@ ul * {
     z-index: 0;
 }
 
-.Header h3 {
-   
+.Header h3:hover {
+    color: var(--blue-color);
 }

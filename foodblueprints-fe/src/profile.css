@@ -36,6 +36,12 @@
     border-radius: 10px;
     border: none;
     background-color: var(--blue-color);
-    min-width: 10rem;
-    font-weight: bold;
+    min-width: 15rem;
+    color: var(--white-color);
+    font-size: large;
+    transition: all 100ms ease-in-out;
+}
+
+.options button:hover {
+    transform: scale(1.10);
 }

@@ -126,7 +126,7 @@ function Home(){
           <div className="Home">
             <div className="home-topcontent">
                <h1>Welcome to FoodBlueprints</h1>
-              <h3>Create and share your favorite recipes</h3>
+              <h3>Create and share your favorite recipes. Search for a recipe or view our most recent added</h3>
               <input type='text' className='searchbar' placeholder='Search for a recipe...' onChange={e => setSearchValue(e.target.value)}/>
             </div>
            

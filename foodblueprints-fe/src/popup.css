@@ -1,5 +1,5 @@
 :root {
-    --blue-color: #279af1;
+    --blue-color: #0d5ca7;
     --white-color:#e6e6e6;
     --black-color: #1D201F;
     --lighter-gray: #4b4b4b;
@@ -67,6 +67,7 @@ li:hover {
 
     align-self: center;
     background-color: var(--blue-color);
+    transition: all 100ms ease-in-out;
 }
 
 .submit:hover {
@@ -98,9 +99,11 @@ li:hover {
     border: none;
     line-height: 1px;
     margin-left: 10rem;
+    transition: all 100ms ease-in-out;
 }
 
 .closeContainer button:hover {
     background-color: var(--blue-color);
     color: var(--white-color);
+    transform: scale(1.25);
 }
