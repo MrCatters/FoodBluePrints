@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4d75f11e-7579-466f-9b03-7d5a98bdc9c1",
+		"_postman_id": "d78b48bd-1a30-421a-acab-208cdebeae16",
 		"name": "FoodBluePrints",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -230,13 +230,47 @@
 			"response": []
 		},
 		{
+			"name": "Patch Recipe",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// Everything is optional except for id\r\n{\r\n    \"id\": 6,\r\n    \"name\": \"red pie\",\r\n    \"contents\" : \"yucky\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/patch_recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"patch_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Recipe",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"recipeId\": \"3\"\r\n}",
+					"raw": "{\r\n    \"recipeId\": \"6\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -437,6 +471,40 @@
 			"response": []
 		},
 		{
+			"name": "Post Favorite Recipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"searchString\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/post_favorite_recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"post_favorite_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get User Favorited Recipes",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -474,43 +542,9 @@
 			"response": []
 		},
 		{
-			"name": "Patch Recipe",
+			"name": "Delete Favorite Recipe",
 			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "// Everything is optional except for id\r\n{\r\n    \"id\": 103,\r\n    \"name\": \"red pie\",\r\n    \"contents\" : \"yucky\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/patch_recipe",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"recipe",
-						"patch_recipe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Post Favorite Recipe",
-			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -522,7 +556,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/post_favorite_recipe",
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/delete_favorite_recipe",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -535,7 +569,7 @@
 						"api",
 						"v1",
 						"recipe",
-						"post_favorite_recipe"
+						"delete_favorite_recipe"
 					]
 				}
 			},

@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -42,7 +44,7 @@ public class User implements UserDetails {
   @JsonIgnore
   private String password;
 
-  @ElementCollection()
+  @ElementCollection
   @JsonIgnore
   private List<Recipe> favoritedRecipes;
 
@@ -67,7 +69,7 @@ public class User implements UserDetails {
   public String getUsername() {
     return email;
   }
-
+  
   @Override
   @JsonIgnore
   public boolean isAccountNonExpired() {

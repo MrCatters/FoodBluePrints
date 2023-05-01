@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin({ "http://127.0.0.1:3000", "http://localhost:3000" })
+@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
 @RequestMapping("/api/v1/recipe")
 @RequiredArgsConstructor
 public class RecipeController {
@@ -106,6 +106,18 @@ public class RecipeController {
             HttpServletRequest httpServletRequest) {
         try {
             service.addFavoriteRecipe(httpServletRequest, recipesRequest);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping("/delete_favorite_recipe")
+    public ResponseEntity<String> deleteFavoriteRecipe(
+            @RequestBody RecipesRequest recipesRequest,
+            HttpServletRequest httpServletRequest) {
+        try {
+            service.removeFavoriteRecipe(httpServletRequest, recipesRequest);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

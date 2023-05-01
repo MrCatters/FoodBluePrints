@@ -1,6 +1,7 @@
 package com.recipe.service.recipe;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -128,6 +129,24 @@ public class RecipeService {
         }
 
         favoritedRecipes.add(existingRecipe);
+
+        existingUser.setFavoritedRecipes(favoritedRecipes);
+        userRepository.save(existingUser);
+    }
+
+
+    public void removeFavoriteRecipe(
+            HttpServletRequest httpServletRequest,
+            RecipesRequest recipesRequest) throws ResourceNotFoundException{
+        User existingUser = authenticationService.getUser(httpServletRequest);
+        Integer recipeId = Integer.parseInt(recipesRequest.getSearchString());
+        Recipe existingRecipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Unable to find recipe by provided id."));
+
+        List<Recipe> favoritedRecipes = existingUser.getFavoritedRecipes();
+        if(!favoritedRecipes.remove(existingRecipe)){
+            throw new ResourceNotFoundException("Unable to find matching favorited recipe by provided id.");
+        }
 
         existingUser.setFavoritedRecipes(favoritedRecipes);
         userRepository.save(existingUser);
