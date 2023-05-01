@@ -22,7 +22,7 @@ function Profile() {
     useEffect(() => {
         setTimeout(function() {
             setPing(true);
-        },500)
+        },700)
     },[])
     useEffect(() => {
         if (switcher == false) {

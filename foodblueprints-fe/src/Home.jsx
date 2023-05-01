@@ -19,7 +19,7 @@ function Home(){
     useEffect(() => {
       setTimeout(function() {
           setPing(true);
-      },500)
+      },1000)
   },[])
     useEffect(() => {
         
