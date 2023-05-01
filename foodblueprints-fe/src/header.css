@@ -16,7 +16,8 @@
     justify-content: space-between;
     margin: 0;
     position: fixed;
-    top: 0
+    top: 0;
+    z-index: 1;
   
 }
 
@@ -48,10 +49,11 @@ ul * {
     background-color: var(--white-color);
     padding: 1rem;
     margin: 0rem;
-    min-width: 20rem;
+    min-width: 30rem;
     opacity: 80%;
-    font-size: large;
+    font-size: x-large;
     text-align: center;
+    z-index: 0;
 }
 
 .Header h3 {

@@ -5,3 +5,36 @@
     align-items: center;
     margin-top: 4rem;
 }
+
+.profile-header-container {
+    background-image: url("./img/lensblur6vignette11.jpg");
+  
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6rem;
+}
+
+.profile-header-container * {
+    color: var(--white-color);
+}
+
+.options {
+    margin: 1rem;
+    margin-top: 2rem;
+  
+}
+
+.options * {
+    margin: 1rem;
+}
+
+.options button {
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--blue-color);
+    min-width: 10rem;
+    font-weight: bold;
+}

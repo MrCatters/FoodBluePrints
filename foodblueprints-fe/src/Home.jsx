@@ -13,14 +13,41 @@ function Home(){
     const [recipes, setRecipes] = useState();
     const [searchValue, setSearchValue] = useState();
     const [changed,setChanged] = useState(false);
+    const [favoriteIDs, setFavoriteIDs] = useState([]);
+    const [ping,setPing] = useState();
     
+    useEffect(() => {
+      setTimeout(function() {
+          setPing(true);
+      },500)
+  },[])
     useEffect(() => {
         
         const cookiearray = document.cookie.split('=')
         const cookietemp = (cookiearray[1]);
         const cookie = (cookietemp.split(';'))[0]
+        let recipes_list;
         let temp = []; 
         
+        axios.get('http://127.0.0.1:8080/api/v1/recipe/favorited_recipes', {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${cookie}`
+            }
+        })
+        .then(function (response) {
+            let tempIDs = [];
+            recipes_list = response.data.recipes;
+            recipes_list.forEach(recipe => {
+                tempIDs.push(recipe.id);
+            });
+            setFavoriteIDs(tempIDs);
+
+        })
+        .then(function (error) {
+            console.log(error);
+        });
+
         let data = JSON.stringify({
             "searchString": 10
           });
@@ -40,7 +67,7 @@ function Home(){
           .then((response) => {
             response.data.recipes.forEach(recipe => {
                 console.log(recipe)
-                temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image}></RecipeCard>);
+                temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image} favorites = {favoriteIDs}></RecipeCard>);
             })
             setRecipes(temp)
           })
@@ -48,36 +75,17 @@ function Home(){
             console.log(error);
           });
           
-         
-         /*
-          var myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
-          myHeaders.append("Authorization", `Bearer ${cookie}`);
-          
-          var raw = JSON.stringify({
-            "searchString": 10
-          });
-          
-          var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-          };
-          
-          fetch("http://127.0.0.1:8080/api/v1/recipe/recent_recipes", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-            */
-    }, []);
+        
+    }, [ping]);
 
     useEffect(() => {
         
       const cookiearray = document.cookie.split('=')
       const cookietemp = (cookiearray[1]);
       const cookie = (cookietemp.split(';'))[0]
-      let temp = []; 
+      let temp = [];
+      let recipes_list; 
+     
       
       let data = JSON.stringify({
         "searchString": `${searchValue}`
@@ -100,7 +108,7 @@ function Home(){
         setRecipes([]);
         console.log(JSON.stringify(response.data));
         response.data.recipes.forEach(recipe => {
-          temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image}></RecipeCard>);
+          temp.push(<RecipeCard id = {recipe.id}key = {recipe.id} title ={recipe.name} author = {recipe.user.firstName} content ={recipe.contents} img = {recipe.image} favorites = {favoriteIDs}></RecipeCard>);
       })
       setRecipes(temp)
       

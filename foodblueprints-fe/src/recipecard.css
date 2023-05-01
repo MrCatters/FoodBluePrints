@@ -28,6 +28,9 @@
    
 }
 
+.recipe-card .popup {
+    margin: 0;
+}
 .header-container {
     display: flex;
     background-color: var(--lighter-gray);

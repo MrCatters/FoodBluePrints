@@ -25,6 +25,8 @@ li:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+   
 }
 
 .popup-inner {
@@ -55,7 +57,7 @@ li:hover {
 }
 
 .popup textarea {
-    min-width: 40ch;
+    min-width: 60ch;
     min-height: 30ch;
 }
 
