@@ -19,7 +19,7 @@ function Header(props) {
                 <input type='text' className='searchbar' placeholder='Search for a recipe...' onChange={e => props.setSearchValue(e.target.value)}/>
                 <ul className='nav-items'>
                     <a onClick={e => setPopup(true)}>Add a recipe</a>
-                    <Link to = "/profile" >profile</Link>
+                    <Link to = "/profile" >Profile</Link>
                 </ul>
             </div>
             <AddPopup trigger = { popup } setTrigger = {setPopup}></AddPopup>    

@@ -8,6 +8,7 @@ import "./profile.css"
 
 function Profile() {
     let userEmail;
+
     let recipes_list;
     let temp = [];
     const [switcher, setSwitcher] = useState(false);
@@ -117,6 +118,7 @@ function Profile() {
     }
     }, [switcher,ping]) 
 
+
     return (
         
         <div className="profile">
@@ -132,10 +134,8 @@ function Profile() {
                 </div>
                 <div className="grid-container">
                  {items}   
-                </div>
-                
-            </div>
-           
+                </div>     
+            </div>  
         </div>
     );
 }
