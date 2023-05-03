@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./login.css";
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom"
-import { useSignIn } from "react-auth-kit";
+import { useSignIn, useSignOut } from "react-auth-kit";
 
 function Login(props){
 
@@ -11,6 +11,7 @@ function Login(props){
     const [passvalid,setPassvalid] = useState();
     const navigate = useNavigate();
     const signIn = useSignIn();
+    const signOut = useSignOut();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,20 +20,30 @@ function Login(props){
             "password": u_pass,
         })
         .then(function (response) {
+            console.log(response)
             
-            signIn({
+            if (signIn(
+                {
                 token: response.data.access_token,
-                expiresIn:3600,
+                expiresIn: 3600,
                 tokenType: "Bearer",
                 authState: { email: u_email},
-            });
+                refreshToken: response.data.refresh_token
+                }
+            )) {
+                setTimeout(() => {
+                    navigate("/home")
+                }, 100)    
+            } else {
 
-            navigate("/home")
+            };
+
+            
             
         })
         .catch(function(error) {
             console.log(error)
-            if (error.response.status === 403) {
+            if (error.response.status === 401) {
                 setPassvalid("Incorrect password or email")
             }
 
@@ -41,9 +52,10 @@ function Login(props){
     }
     return (
         <div className="Login">
+           
+            <div className="login-form-container">
             <h1>FoodBlueprints</h1>
             <h2>Welcome, please log in or sign up</h2>
-            <div className="login-form-container">
                 <form onSubmit = {handleSubmit} className="login-form">
                     <input type = "text" required onChange = {(e) => setEmail(e.target.value)}id = "user"  placeholder="enter username.."/>
                     <input type = "password" required id = "password" onChange = {(e) => setPass(e.target.value)} placeholder="enter password..."/>

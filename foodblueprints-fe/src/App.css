@@ -1,5 +1,5 @@
 :root {
-  --blue-color: #228CDB;
+  --blue-color: #0d5ca7;
   --white-color: #D1DEDE;
   --black-color: #1D201F;
   --lighter-gray: #4b4b4b;
@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   background-color: #1D201F;
+  width: 100%;
 }
 
 

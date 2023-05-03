@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17.0.6_10-jdk-alpine as build
+FROM eclipse-temurin:18.0.2.1_1-jdk as build
 WORKDIR ./Group-12-Final-Project
 
 COPY mvnw .

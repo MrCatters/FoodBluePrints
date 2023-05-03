@@ -1,5 +1,5 @@
 :root {
-  --blue-color: #228CDB;
+  --blue-color: #0d5ca7;
   --white-color:#e6e6e6;
   --black-color: #1D201F;
   --light-blue: rgb(230, 241, 253);
@@ -9,6 +9,7 @@
 html {
   margin: 0;
   background-color: var(--white-color);
+  overflow-x: hidden;
 }
 
 * {

@@ -2,8 +2,54 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
+    margin-top: 4rem;
 }
 
 .Home h1 {
-    margin: 3rem;
+    
+}
+
+.recent-recipes-container > * {
+    padding: 0.5rem;
+}
+
+.recent-recipes-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  
+
+ 
+ 
+
+  /*
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  width: 100vw;
+  flex-wrap: wrap;
+  */
+}
+
+.outer-container {
+    
+    background-position: center;
+    object-fit: fill;
+}
+
+.home-topcontent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white-color);
+    width: 100vw;
+    color: var(--white-color);
+    padding: 1rem;
+    background-image: url("./img/lensblur6vignette11.jpg");
+}
+
+.home-topcontent *{
+    margin: 1rem;
 }

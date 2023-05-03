@@ -1,32 +1,63 @@
 :root {
-    --blue-color: #279af1;
+    --blue-color: #0d5ca7;
     --white-color:#e6e6e6;
     --black-color: #1D201F;
 }
-
+ html {
+    width: 100%;
+ }
 .Header {
-    background-color: var(--black-color);
+    background-color: var(--white-color);
     padding: 1rem;
+    box-sizing: border-box;
     display: flex;
-    width: 100vw;
+    align-items: center;
+    width: 100%;
     justify-content: space-between;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+  
 }
 
 .Header * {
-    color: var(--white-color);
-    margin-inline: 1rem;
+    color: var(--black-color);
+    
 }
 
+ul * {
+   padding-inline-start: 1rem;
+}
 .nav-items {
     display: flex;
 }
 
 .Header a {
     text-decoration: none;
+    transition: all 100ms ease-in-out;
 }
 
 .Header a:hover {
     text-decoration: none;
     cursor:pointer;
+    color: var(--blue-color);
+    transform: scale(1.2);
+}
+
+.searchbar {
+    border-radius: 10px;
+    border: none;
+    background-color: var(--white-color);
+    padding: 1rem;
+    margin: 0rem;
+    min-width: 30rem;
+    opacity: 80%;
+    font-size: x-large;
+    text-align: center;
+    z-index: 0;
+}
+
+.Header h3:hover {
     color: var(--blue-color);
 }

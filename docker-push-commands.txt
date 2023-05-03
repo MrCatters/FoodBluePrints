@@ -1,0 +1,7 @@
+docker build -t springapi .
+docker tag springapi mrronsaer/group-12-final-project:spring-api-dev-1
+docker push mrronsaer/group-12-final-project:spring-api-dev-1
+
+docker build -t nodejs-frontend .
+docker tag nodejs-frontend mrronsaer/group-12-final-project/:nodejs-fontend-dev-1
+docker push mrronsaer/group-12-final-project:nodejs-fontend-dev-1
