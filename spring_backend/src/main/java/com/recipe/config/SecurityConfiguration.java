@@ -16,25 +16,32 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+// Security configuration class that returns beans
 public class SecurityConfiguration {
     private final JwtAuthenticationFilters jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
+    // returns a SecurityFilterChain object that is used by the HttpSecurity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                // disable csrf protection
+                // managed by jwt tokens instead
                 .csrf()
                 .disable()
+                // allow requests to /api/v1/auth/** without authentication
                 .authorizeHttpRequests()
                 .requestMatchers("/api/v1/auth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
+                // disable session creation
                 .sessionManagement(management -> management
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                // enable cors and http basic
                 .cors(withDefaults())
                 .httpBasic(withDefaults());
         return http.build();

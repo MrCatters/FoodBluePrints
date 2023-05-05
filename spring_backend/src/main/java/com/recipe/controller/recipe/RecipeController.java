@@ -1,6 +1,5 @@
 package com.recipe.controller.recipe;
 
-import java.util.logging.Logger;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +30,7 @@ public class RecipeController {
 
     private final RecipeService service;
 
+    // Post new recipe
     @PostMapping("/post_recipe")
     public ResponseEntity<HttpStatus> postRecipe(
             @RequestBody RecipeDTO post,
@@ -39,30 +39,35 @@ public class RecipeController {
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
+    // Get recipe by name
     @PostMapping("/name_recipes")
     public ResponseEntity<RecipeResponse> recipesByName(
             @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByName(request));
     }
 
+    // Get recipes by user first name
     @PostMapping("/user_first_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByFirstUserName(
             @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
     }
 
+    // Get recipes by user last name
     @PostMapping("/user_last_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByLastUserName(
             @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByUserLastName(request));
     }
 
+    // Get recipes by user email
     @PostMapping("/user_email_recipes")
     public ResponseEntity<RecipeResponse> recipesByUserEmail(
             @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByUserEmail(request));
     }
 
+    // Delete recipe
     @DeleteMapping("/delete_recipe")
     public ResponseEntity<String> deleteRecipeById(
             @RequestBody RecipeIdRequest request,
@@ -75,12 +80,14 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    // Get all recipes posted by user
     @GetMapping("/auth_users_recipes")
     public ResponseEntity<RecipeResponse> getRecipeByAuth(
             HttpServletRequest httpServletRequest) {
         return ResponseEntity.ok(service.getRecipeByAuth(httpServletRequest));
     }
 
+    // Get a specified number of recipes
     @PostMapping("/recent_recipes")
     public ResponseEntity<RecipeResponse> recentRecipes(
             @RequestBody RecipeSearchRequest request) {

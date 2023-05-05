@@ -17,16 +17,19 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
+// Configuration class that returns beans
 public class ApplicationConfig {
 
     private final UserRepository repository;
 
+    // returns a UserDetailsService object that is used by the DaoAuthenticationProvider
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    // returns an AuthenticationProvider object that is used by the AuthenticationManager
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -35,11 +38,13 @@ public class ApplicationConfig {
         return authProvider;
     }
 
+    // returns an AuthenticationManager object that is used by the SecurityFilterChain
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
+    // returns a PasswordEncoder object that is used by the DaoAuthenticationProvider
     @Bean
     public PasswordEncoder PasswordEncoder() {
         return new BCryptPasswordEncoder();

@@ -20,6 +20,7 @@ public class UserController {
 
     private final AuthenticationService authenticationService;
 
+    // Get user information
     @GetMapping("/user_information")
     public UserInformationResponse userInformation(
             String authHeader, HttpServletRequest httpServletRequest) {

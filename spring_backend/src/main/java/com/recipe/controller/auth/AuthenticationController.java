@@ -27,6 +27,7 @@ public class AuthenticationController {
 
     private final AuthenticationService service;
 
+    // Register a new user
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request) throws Exception {
@@ -37,12 +38,14 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.register(request));
     }
 
+    // Authenticate a user
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
+    // Refresh a token
     @PostMapping("/refresh-token")
     public void refreshToken(
             HttpServletRequest request,

@@ -42,6 +42,7 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
   private final User userProbe = new User();
 
+  // Register a new user
   public AuthenticationResponse register(RegisterRequest request) {
 
     // Check if user already exists.
@@ -72,6 +73,7 @@ public class AuthenticationService {
         .build();
   }
 
+  // Authenticate a user
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -89,6 +91,7 @@ public class AuthenticationService {
         .build();
   }
 
+  // Saves the user token in the database
   private void saveUserToken(User user, String jwtToken) {
     var token = Token.builder()
         .user(user)
@@ -100,6 +103,7 @@ public class AuthenticationService {
     tokenRepository.save(token);
   }
 
+  // Revokes all the user tokens
   private void revokeAllUserTokens(User user) {
     var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
     if (validUserTokens.isEmpty())
@@ -111,6 +115,7 @@ public class AuthenticationService {
     tokenRepository.saveAll(validUserTokens);
   }
 
+  // Refreshes the user token
   public void refreshToken(
       HttpServletRequest request,
       HttpServletResponse response) throws IOException, StreamWriteException, DatabindException, java.io.IOException {
@@ -138,6 +143,7 @@ public class AuthenticationService {
     }
   }
 
+  // Returns the user from the request
   public User getUser(HttpServletRequest httpServletRequest) {
     final String authHeader = httpServletRequest.getHeader("Authorization");
     final String jwtToken = authHeader.split(" ")[1].trim();

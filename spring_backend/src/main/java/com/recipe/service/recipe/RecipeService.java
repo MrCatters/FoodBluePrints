@@ -28,6 +28,7 @@ public class RecipeService {
     private final UserRepository userRepository;
     private final AuthenticationService authenticationService;
 
+    // Add new recipe to database
     public void postRecipe(RecipeDTO post, HttpServletRequest httpServletRequest) {
         User existingUser = (authenticationService.getUser(httpServletRequest));
 
@@ -42,26 +43,31 @@ public class RecipeService {
         recipeRepository.save(newRecipe);
     }
 
+    // Get recipe by name
     public RecipeResponse getRecipesByName(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findFirst10ByNameContainingIgnoreCase(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
+    // Get recipes by user first name
     public RecipeResponse getRecipesByUserFirstName(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByFirstName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
+    // Get recipes by user last name
     public RecipeResponse getRecipesByUserLastName(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByLastName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
+    // Get recipes by user email
     public RecipeResponse getRecipesByUserEmail(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByEmail(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
+    // Get recipes by recipe id
     public void deleteRecipesById(
             RecipeIdRequest deletionRequest,
             HttpServletRequest httpServletRequest)
@@ -76,17 +82,20 @@ public class RecipeService {
         }
     }
 
+    // Get recipes by user auth
     public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest) {
         User existingUser = authenticationService.getUser(httpServletRequest);
         List<Recipe> recipes = recipeRepository.findAllRecipesByUserId(existingUser.getId());
         return buildRecipeResponse(recipes);
     }
 
+    // Get a specified number of recent recipes
     public RecipeResponse getRecentRecipes(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findTopRecipes(Integer.parseInt(request.getSearchString()));
         return buildRecipeResponse(recipes);
     }
 
+    // Modify certain recipe fields
     public void patchRecipeEntity(
             Recipe updatedRecipe,
             HttpServletRequest httpServletRequest)
@@ -109,6 +118,7 @@ public class RecipeService {
         }
     }
 
+    // Favorite an existing recipe
     public void addFavoriteRecipe(
             HttpServletRequest httpServletRequest,
             RecipeIdRequest recipeIdRequest)
@@ -129,12 +139,14 @@ public class RecipeService {
         userRepository.save(existingUser);
     }
 
+    // Get all favorited recipes
     public RecipeResponse getUserFavoritedRecipes(HttpServletRequest httpServletRequest) {
         User existingUser = authenticationService.getUser(httpServletRequest);
         List<Recipe> recipes = recipeRepository.findAllFavoritedRecipesByUserId(existingUser.getId());
         return buildRecipeResponse(recipes);
     }
 
+    // Remove a user favorited recipe
     public void removeFavoriteRecipe(
             HttpServletRequest httpServletRequest,
             RecipeSearchRequest recipesRequest)
@@ -153,6 +165,7 @@ public class RecipeService {
         userRepository.save(existingUser);
     }
 
+    // Helper method to build recipe response
     public static RecipeResponse buildRecipeResponse(List<Recipe> recipes) {
         return RecipeResponse.builder()
                 .recipes(recipes)

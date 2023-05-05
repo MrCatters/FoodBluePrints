@@ -20,7 +20,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor // Gen constructor relating to final.
+@RequiredArgsConstructor
+// Filter that intercepts requests and responds with new data
 public class JwtAuthenticationFilters extends OncePerRequestFilter {
 
     private final JwtService jwtService;
@@ -31,7 +32,7 @@ public class JwtAuthenticationFilters extends OncePerRequestFilter {
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain // COR design pattern
+            @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwtToken;
@@ -57,6 +58,7 @@ public class JwtAuthenticationFilters extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
+        // Pass to next filter
         filterChain.doFilter(request, response);
     }
 
