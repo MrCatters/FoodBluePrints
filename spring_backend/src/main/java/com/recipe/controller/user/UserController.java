@@ -13,23 +13,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
+@CrossOrigin({ "http://127.0.0.1:3000", "http://localhost:3000" })
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final AuthenticationService authenticationService;
-    
+
     @GetMapping("/user_information")
     public UserInformationResponse userInformation(
-    String authHeader, HttpServletRequest httpServletRequest) {
+            String authHeader, HttpServletRequest httpServletRequest) {
         User existingUser = (authenticationService.getUser(httpServletRequest));
-        
+
         return UserInformationResponse.builder()
-                                        .id(existingUser.getId())
-                                        .firstName(existingUser.getFirstName())
-                                        .lastName(existingUser.getLastName())
-                                        .email(existingUser.getEmail())
-                                        .build();
+                .id(existingUser.getId())
+                .firstName(existingUser.getFirstName())
+                .lastName(existingUser.getLastName())
+                .email(existingUser.getEmail())
+                .build();
     }
 }

@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecipeDeletionRequest {
+public class RecipeIdRequest {
     private Integer recipeId;
 }

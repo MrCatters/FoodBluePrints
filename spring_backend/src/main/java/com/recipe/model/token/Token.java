@@ -1,6 +1,5 @@
 package com.recipe.model.token;
 
-
 import com.recipe.model.users.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

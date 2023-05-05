@@ -1,7 +1,6 @@
 package com.recipe.service.recipe;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -11,13 +10,13 @@ import org.springframework.stereotype.Service;
 import com.recipe.model.recipe.Recipe;
 import com.recipe.model.recipe.RecipeRepository;
 import com.recipe.model.recipe.RecipeResponse;
-import com.recipe.model.recipe.RecipesRequest;
+import com.recipe.model.recipe.RecipeSearchRequest;
 import com.recipe.model.recipe.RecipeDTO;
+import com.recipe.model.recipe.RecipeIdRequest;
 import com.recipe.model.users.User;
 import com.recipe.model.users.UserRepository;
 import com.recipe.service.auth.AuthenticationService;
 import com.recipe.utils.NullUtils;
-
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,7 @@ public class RecipeService {
     private final UserRepository userRepository;
     private final AuthenticationService authenticationService;
 
-    public void postRecipe(RecipeDTO post, HttpServletRequest httpServletRequest) throws Exception {
+    public void postRecipe(RecipeDTO post, HttpServletRequest httpServletRequest) {
         User existingUser = (authenticationService.getUser(httpServletRequest));
 
         final Recipe newRecipe = Recipe.builder()
@@ -43,37 +42,38 @@ public class RecipeService {
         recipeRepository.save(newRecipe);
     }
 
-    public RecipeResponse getRecipesByName(RecipesRequest request) {
+    public RecipeResponse getRecipesByName(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findFirst10ByNameContainingIgnoreCase(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
-    public RecipeResponse getRecipesByUserFirstName(RecipesRequest request) {
+    public RecipeResponse getRecipesByUserFirstName(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByFirstName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
-    public RecipeResponse getRecipesByUserLastName(RecipesRequest request) {
+    public RecipeResponse getRecipesByUserLastName(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByLastName(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
-    public RecipeResponse getRecipesByUserEmail(RecipesRequest request) {
+    public RecipeResponse getRecipesByUserEmail(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findAllRecipesByEmail(request.getSearchString());
         return buildRecipeResponse(recipes);
     }
 
-    public static RecipeResponse buildRecipeResponse(List<Recipe> recipes) {
-        return RecipeResponse.builder()
-                .recipes(recipes)
-                .build();
-    }
+    public void deleteRecipesById(
+            RecipeIdRequest deletionRequest,
+            HttpServletRequest httpServletRequest)
+            throws IllegalArgumentException {
+        Integer recipeId = deletionRequest.getRecipeId();
+        Integer userId = authenticationService.getUser(httpServletRequest).getId();
 
-    public void deleteRecipesById(Integer recipeId) throws ResourceNotFoundException {
-        recipeRepository.findById(recipeId).orElseThrow(() -> new ResourceNotFoundException());
-
-        
-        recipeRepository.deleteById(recipeId);
+        if (recipeRepository.checkMatchingRecipe(recipeId, userId)) {
+            recipeRepository.deleteById(recipeId);
+        } else {
+            throw new IllegalArgumentException("Recipe user id does not match with authorized user id.");
+        }
     }
 
     public RecipeResponse getRecipeByAuth(HttpServletRequest httpServletRequest) {
@@ -82,29 +82,51 @@ public class RecipeService {
         return buildRecipeResponse(recipes);
     }
 
-    public RecipeResponse getRecentRecipes(RecipesRequest request) {
+    public RecipeResponse getRecentRecipes(RecipeSearchRequest request) {
         List<Recipe> recipes = recipeRepository.findTopRecipes(Integer.parseInt(request.getSearchString()));
         return buildRecipeResponse(recipes);
     }
 
-    public void patchRecipeEntity(Recipe updatedRecipe, HttpServletRequest httpServletRequest)
-            throws ResourceNotFoundException {
+    public void patchRecipeEntity(
+            Recipe updatedRecipe,
+            HttpServletRequest httpServletRequest)
+            throws IllegalArgumentException {
 
         Integer recipeId = updatedRecipe.getId();
         Integer userId = authenticationService.getUser(httpServletRequest).getId();
 
         if (recipeRepository.checkMatchingRecipe(recipeId, userId)) {
             Recipe existingRecipe = recipeRepository.findById(recipeId)
-                    .orElseThrow(() -> new ResourceNotFoundException("Recipe id does not match with an existing recipe"));
+                    .orElseThrow(
+                            () -> new IllegalArgumentException("Recipe id does not match with an existing recipe"));
             NullUtils.updateIfPresent(existingRecipe::setImage, updatedRecipe.getImage());
             NullUtils.updateIfPresent(existingRecipe::setName, updatedRecipe.getName());
             NullUtils.updateIfPresent(existingRecipe::setContents, updatedRecipe.getContents());
             existingRecipe.setDateUpdated(LocalDateTime.now());
             recipeRepository.save(existingRecipe);
-
         } else {
-            throw new ResourceNotFoundException("Recipe user id does not match with authorized user");
+            throw new IllegalArgumentException("Recipe user id does not match with authorized user id.");
         }
+    }
+
+    public void addFavoriteRecipe(
+            HttpServletRequest httpServletRequest,
+            RecipeIdRequest recipeIdRequest)
+            throws IllegalArgumentException {
+
+        User existingUser = authenticationService.getUser(httpServletRequest);
+        Integer recipeId = recipeIdRequest.getRecipeId();
+        Recipe existingRecipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new IllegalArgumentException("Unable to find recipe by provided id."));
+
+        List<Recipe> favoritedRecipes = existingUser.getFavoritedRecipes();
+        if (favoritedRecipes.contains(existingRecipe)) {
+            throw new IllegalArgumentException("Recipe has already been favorited.");
+        }
+
+        favoritedRecipes.add(existingRecipe);
+        existingUser.setFavoritedRecipes(favoritedRecipes);
+        userRepository.save(existingUser);
     }
 
     public RecipeResponse getUserFavoritedRecipes(HttpServletRequest httpServletRequest) {
@@ -113,42 +135,27 @@ public class RecipeService {
         return buildRecipeResponse(recipes);
     }
 
-    public void addFavoriteRecipe(
-            HttpServletRequest httpServletRequest,
-            RecipesRequest recipesRequest) throws ResourceNotFoundException, IllegalArgumentException{
-        User existingUser = authenticationService.getUser(httpServletRequest);
-        Integer recipeId = Integer.parseInt(recipesRequest.getSearchString());
-        Recipe existingRecipe = recipeRepository.findById(recipeId)
-                .orElseThrow(() -> new ResourceNotFoundException("Unable to find recipe by provided id."));
-
-        List<Recipe> favoritedRecipes = existingUser.getFavoritedRecipes();
-        for (Recipe recipe : favoritedRecipes) {
-            if (recipe == existingRecipe) {
-                throw new IllegalArgumentException("Recipe has already been favorited.");
-            }
-        }
-
-        favoritedRecipes.add(existingRecipe);
-
-        existingUser.setFavoritedRecipes(favoritedRecipes);
-        userRepository.save(existingUser);
-    }
-
-
     public void removeFavoriteRecipe(
             HttpServletRequest httpServletRequest,
-            RecipesRequest recipesRequest) throws ResourceNotFoundException{
+            RecipeSearchRequest recipesRequest)
+            throws ResourceNotFoundException {
         User existingUser = authenticationService.getUser(httpServletRequest);
         Integer recipeId = Integer.parseInt(recipesRequest.getSearchString());
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Unable to find recipe by provided id."));
 
         List<Recipe> favoritedRecipes = existingUser.getFavoritedRecipes();
-        if(!favoritedRecipes.remove(existingRecipe)){
+        if (!favoritedRecipes.remove(existingRecipe)) {
             throw new ResourceNotFoundException("Unable to find matching favorited recipe by provided id.");
         }
 
         existingUser.setFavoritedRecipes(favoritedRecipes);
         userRepository.save(existingUser);
+    }
+
+    public static RecipeResponse buildRecipeResponse(List<Recipe> recipes) {
+        return RecipeResponse.builder()
+                .recipes(recipes)
+                .build();
     }
 }

@@ -1,6 +1,5 @@
 package com.recipe.service.token;
 
-
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class JwtService {
     private long jwtExpiration;
     private long refreshExpiration;
 
-    public String extractUsername(String jwtToken){
+    public String extractUsername(String jwtToken) {
         return extractClaim(jwtToken, Claims::getSubject);
     }
 
@@ -37,10 +36,9 @@ public class JwtService {
     }
 
     public String generateJwtToken(
-        Map<String, Object> extraClaims,
-        UserDetails userDetails
-    ) {
-    return buildJwtToken(extraClaims, userDetails, jwtExpiration);
+            Map<String, Object> extraClaims,
+            UserDetails userDetails) {
+        return buildJwtToken(extraClaims, userDetails, jwtExpiration);
     }
 
     public String generateRefreshToken(UserDetails userDetails) {
@@ -48,18 +46,17 @@ public class JwtService {
     }
 
     public String buildJwtToken(
-        Map<String, Object> otherClaims,
-        UserDetails userDetails,
-        long expiration
-    ) {
+            Map<String, Object> otherClaims,
+            UserDetails userDetails,
+            long expiration) {
         return Jwts
-            .builder()
-            .setClaims(otherClaims)
-            .setSubject(userDetails.getUsername())
-            .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis() + 1800000))
-            .signWith(getSignInKey(), SignatureAlgorithm.HS512)
-            .compact();
+                .builder()
+                .setClaims(otherClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1800000))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS512)
+                .compact();
     }
 
     public boolean isJwtTokenValid(String jwtToken, UserDetails userDetails) {
@@ -75,15 +72,14 @@ public class JwtService {
         return extractClaim(jwtToken, Claims::getExpiration);
     }
 
-    private Claims extractAllClaims(String jwtToken){
+    private Claims extractAllClaims(String jwtToken) {
         return Jwts
-        .parserBuilder()
-        // Creates signature of the jwt
-        .setSigningKey(getSignInKey())
-        .build()
-        .parseClaimsJws(jwtToken)
-        .getBody();
-
+                .parserBuilder()
+                // Creates signature of the jwt
+                .setSigningKey(getSignInKey())
+                .build()
+                .parseClaimsJws(jwtToken)
+                .getBody();
     }
 
     private Key getSignInKey() {

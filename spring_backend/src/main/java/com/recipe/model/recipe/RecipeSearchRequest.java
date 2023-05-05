@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipesRequest {
+public class RecipeSearchRequest {
     private String searchString;
 }

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.recipe.model.recipe.Recipe;
-import com.recipe.model.recipe.RecipeDeletionRequest;
+import com.recipe.model.recipe.RecipeIdRequest;
 import com.recipe.model.recipe.RecipeResponse;
-import com.recipe.model.recipe.RecipesRequest;
+import com.recipe.model.recipe.RecipeSearchRequest;
 import com.recipe.model.recipe.RecipeDTO;
 import com.recipe.service.recipe.RecipeService;
 
@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
+@CrossOrigin({ "http://127.0.0.1:3000", "http://localhost:3000" })
 @RequestMapping("/api/v1/recipe")
 @RequiredArgsConstructor
 public class RecipeController {
@@ -34,64 +34,63 @@ public class RecipeController {
     @PostMapping("/post_recipe")
     public ResponseEntity<HttpStatus> postRecipe(
             @RequestBody RecipeDTO post,
-            HttpServletRequest httpServletRequest) throws Exception {
+            HttpServletRequest httpServletRequest) {
         service.postRecipe(post, httpServletRequest);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/name_recipes")
     public ResponseEntity<RecipeResponse> recipesByName(
-            @RequestBody RecipesRequest request) throws Exception {
-        Logger logger = Logger.getLogger(RecipeController.class.getName());
-        logger.info("Returned value: " + request.getSearchString());
+            @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByName(request));
     }
 
     @PostMapping("/user_first_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByFirstUserName(
-            @RequestBody RecipesRequest request) throws Exception {
+            @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByUserFirstName(request));
     }
 
     @PostMapping("/user_last_name_recipes")
     public ResponseEntity<RecipeResponse> recipesByLastUserName(
-            @RequestBody RecipesRequest request) throws Exception {
+            @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByUserLastName(request));
     }
 
     @PostMapping("/user_email_recipes")
     public ResponseEntity<RecipeResponse> recipesByUserEmail(
-            @RequestBody RecipesRequest request) throws Exception {
+            @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecipesByUserEmail(request));
     }
 
     @DeleteMapping("/delete_recipe")
-    public ResponseEntity<HttpStatus> removeRecipeById(
-            @RequestBody RecipeDeletionRequest request) {
+    public ResponseEntity<String> deleteRecipeById(
+            @RequestBody RecipeIdRequest request,
+            HttpServletRequest httpServletRequest) {
         try {
-            service.deleteRecipesById(request.getRecipeId());
-        } catch (ResourceNotFoundException e) {
-            return ResponseEntity.ok(HttpStatus.NOT_FOUND);
+            service.deleteRecipesById(request, httpServletRequest);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping("/auth_users_recipes")
     public ResponseEntity<RecipeResponse> getRecipeByAuth(
-            HttpServletRequest httpServletRequest) throws Exception {
+            HttpServletRequest httpServletRequest) {
         return ResponseEntity.ok(service.getRecipeByAuth(httpServletRequest));
     }
 
     @PostMapping("/recent_recipes")
     public ResponseEntity<RecipeResponse> recentRecipes(
-            @RequestBody RecipesRequest request) throws Exception {
+            @RequestBody RecipeSearchRequest request) {
         return ResponseEntity.ok(service.getRecentRecipes(request));
     }
 
     @PatchMapping("/patch_recipe")
     public ResponseEntity<String> patchRecipe(
             @RequestBody Recipe recipe,
-            HttpServletRequest httpServletRequest) throws ResourceNotFoundException {
+            HttpServletRequest httpServletRequest) {
         try {
             service.patchRecipeEntity(recipe, httpServletRequest);
         } catch (ResourceNotFoundException e) {
@@ -102,10 +101,10 @@ public class RecipeController {
 
     @PostMapping("/post_favorite_recipe")
     public ResponseEntity<String> addFavoriteRecipe(
-            @RequestBody RecipesRequest recipesRequest,
+            @RequestBody RecipeIdRequest recipeIdRequest,
             HttpServletRequest httpServletRequest) {
         try {
-            service.addFavoriteRecipe(httpServletRequest, recipesRequest);
+            service.addFavoriteRecipe(httpServletRequest, recipeIdRequest);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -114,7 +113,7 @@ public class RecipeController {
 
     @DeleteMapping("/delete_favorite_recipe")
     public ResponseEntity<String> deleteFavoriteRecipe(
-            @RequestBody RecipesRequest recipesRequest,
+            @RequestBody RecipeSearchRequest recipesRequest,
             HttpServletRequest httpServletRequest) {
         try {
             service.removeFavoriteRecipe(httpServletRequest, recipesRequest);

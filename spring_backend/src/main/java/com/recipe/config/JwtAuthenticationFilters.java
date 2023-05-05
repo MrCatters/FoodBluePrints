@@ -29,10 +29,10 @@ public class JwtAuthenticationFilters extends OncePerRequestFilter {
     // Intercept requests and respond with new data
     @Override
     protected void doFilterInternal(
-        @NonNull HttpServletRequest request, 
-        @NonNull HttpServletResponse response,
-        @NonNull FilterChain filterChain // COR design pattern
-    )throws ServletException, IOException {
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain // COR design pattern
+    ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwtToken;
         final String userEmail;
@@ -49,13 +49,11 @@ public class JwtAuthenticationFilters extends OncePerRequestFilter {
             // Check if user and token is valid
             if (jwtService.isJwtTokenValid(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    userDetails,
-                    null,
-                    userDetails.getAuthorities()
-                );
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities());
                 authToken.setDetails(
-                    new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                        new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }

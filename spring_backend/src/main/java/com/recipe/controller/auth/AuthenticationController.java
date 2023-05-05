@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@CrossOrigin({"http://127.0.0.1:3000", "http://localhost:3000"})
+@CrossOrigin({ "http://127.0.0.1:3000", "http://localhost:3000" })
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
@@ -29,7 +29,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-    @RequestBody RegisterRequest request) throws Exception{
+            @RequestBody RegisterRequest request) throws Exception {
         if (service.register(request) == null) {
             return ResponseEntity.badRequest().body(service.register(request));
         }
@@ -39,15 +39,15 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-    @RequestBody AuthenticationRequest request) {
+            @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
     @PostMapping("/refresh-token")
     public void refreshToken(
-    HttpServletRequest request,
-    HttpServletResponse response) 
-    throws IOException, StreamWriteException, DatabindException, java.io.IOException {
+            HttpServletRequest request,
+            HttpServletResponse response)
+            throws IOException, StreamWriteException, DatabindException, java.io.IOException {
         service.refreshToken(request, response);
     }
 }

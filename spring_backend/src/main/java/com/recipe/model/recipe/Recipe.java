@@ -29,14 +29,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "recipes")
 public class Recipe {
-    
+
     @Id
     @GeneratedValue
     private Integer id;
 
     @Column(columnDefinition = "VARCHAR")
     private String name;
-    
+
     @Lob
     @Column(columnDefinition = "text")
     private String contents;
@@ -46,12 +46,12 @@ public class Recipe {
 
     @CreationTimestamp
     private LocalDateTime dateCreated;
-    
+
     @UpdateTimestamp
     private LocalDateTime dateUpdated;
 
     // Fixes fail on empty beans
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
