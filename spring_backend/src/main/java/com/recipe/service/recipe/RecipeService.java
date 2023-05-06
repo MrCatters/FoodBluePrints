@@ -149,10 +149,10 @@ public class RecipeService {
     // Remove a user favorited recipe
     public void removeFavoriteRecipe(
             HttpServletRequest httpServletRequest,
-            RecipeSearchRequest recipesRequest)
+            RecipeIdRequest recipeIdRequest)
             throws ResourceNotFoundException {
         User existingUser = authenticationService.getUser(httpServletRequest);
-        Integer recipeId = Integer.parseInt(recipesRequest.getSearchString());
+        Integer recipeId = recipeIdRequest.getRecipeId();
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Unable to find recipe by provided id."));
 

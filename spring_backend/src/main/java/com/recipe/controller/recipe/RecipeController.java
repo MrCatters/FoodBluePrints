@@ -120,10 +120,10 @@ public class RecipeController {
 
     @DeleteMapping("/delete_favorite_recipe")
     public ResponseEntity<String> deleteFavoriteRecipe(
-            @RequestBody RecipeSearchRequest recipesRequest,
+            @RequestBody RecipeIdRequest recipeIdRequest,
             HttpServletRequest httpServletRequest) {
         try {
-            service.removeFavoriteRecipe(httpServletRequest, recipesRequest);
+            service.removeFavoriteRecipe(httpServletRequest, recipeIdRequest);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
