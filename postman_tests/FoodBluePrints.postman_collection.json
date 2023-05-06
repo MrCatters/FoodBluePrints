@@ -230,74 +230,6 @@
 			"response": []
 		},
 		{
-			"name": "Patch Recipe",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "// Everything is optional except for id\r\n{\r\n    \"id\": 6,\r\n    \"name\": \"red pie\",\r\n    \"contents\" : \"yucky\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/patch_recipe",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"recipe",
-						"patch_recipe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Recipe",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"recipeId\": \"6\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/delete_recipe",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"recipe",
-						"delete_recipe"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Find Recipes By User First Name",
 			"request": {
 				"method": "POST",
@@ -400,43 +332,6 @@
 			"response": []
 		},
 		{
-			"name": "Find Recipes By Authenticated User",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8080/api/v1/recipe/auth_users_recipes",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"recipe",
-						"auth_users_recipes"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get Most Recent Recipes",
 			"request": {
 				"method": "POST",
@@ -477,7 +372,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"searchString\": 2\r\n}",
+					"raw": "{\r\n    \"recipeId\": \"6\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -499,6 +394,43 @@
 						"v1",
 						"recipe",
 						"post_favorite_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Recipes By Authenticated User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/auth_users_recipes",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"auth_users_recipes"
 					]
 				}
 			},
@@ -542,13 +474,81 @@
 			"response": []
 		},
 		{
+			"name": "Patch Recipe",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// Everything is optional except for id\r\n{\r\n    \"id\": 6,\r\n    \"name\": \"red pie\",\r\n    \"contents\" : \"yucky\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/patch_recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"patch_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recipe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipeId\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/recipe/delete_recipe",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipe",
+						"delete_recipe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Favorite Recipe",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"searchString\": 2\r\n}",
+					"raw": "{\r\n    \"recipeId\": 6\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

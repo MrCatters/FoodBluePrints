@@ -26,7 +26,7 @@ function RecipeCard(props) {
 
     function favoriteHandler() {
         let data = JSON.stringify({
-            "searchString": props.id
+            "recipeId": props.id
           });
           
           let config = {
@@ -56,7 +56,7 @@ function RecipeCard(props) {
 
     function unfavoriteHanlder() {
         let data = JSON.stringify({
-            "searchString": props.id
+            "recipeId": props.id
           });
           
           let config = {
